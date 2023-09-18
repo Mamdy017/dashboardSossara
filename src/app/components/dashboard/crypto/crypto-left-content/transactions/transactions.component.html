@@ -1,0 +1,47 @@
+<div class="card tranaction-card">
+  <div class="card-header card-no-border">
+    <div class="header-top">
+      <h5>Transactions</h5>
+      <ul class="nav nav-tabs custom-tab" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" type="button" [ngClass]="{'active show': openTab == 'All'}" (click)="tabbed('All')">All</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" type="button" [ngClass]="{'active show': openTab == 'Buy'}" (click)="tabbed('Buy')">Buy</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" type="button" [ngClass]="{'active show': openTab == 'Sell'}" (click)="tabbed('Sell')">Sell</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-body pt-0">
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+        <div class="table-responsive recent-table transaction-table">
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let item of filterData">
+                <td>
+                  <div class="d-flex">
+                    <i class="me-2" [ngClass]="item.growth == 'high' ? 'font-success' : 'font-danger'" >
+                     <app-feather-icons [icon]="item.arrow"></app-feather-icons>
+                    </i>
+                    <div>
+                      <h6 class="f-14 mb-0">{{ item.type }} {{ item.coin }}</h6>
+                      <span class="f-light">{{ item.date }}</span>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="f-light f-w-500">{{ item.parsonage }} {{ item.coin }}</span>
+                </td>
+                <td><span class="f-light f-w-500">$236.89</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="card portfolio-card">
+  <div class="card-header card-no-border">
+    <div class="header-top">
+      <h5 class="m-0">My Portfolio</h5>
+      <div class="card-header-right-icon">
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" (click)="toggle()">BTC</button>
+          <div class="dropdown-menu dropdown-menu-end" [class.show]="show"><a class="dropdown-item" href="#">ETH</a><a class="dropdown-item" href="#">USD</a><a class="dropdown-item" href="#">LTC</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-xxl-12 col-xl-7 col-sm-6 box-col-6">
+        <div class="portfolio-chart-container">
+          <div id="portfolio-chart">
+            <apx-chart [series]="portfolio.series" [chart]="portfolio.chart" [plotOptions]="portfolio.plotOptions" [colors]="portfolio.colors" [labels]="portfolio.labels" [fill]="portfolio.fill" [responsive]="portfolio.responsive"></apx-chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-xxl-12 col-xl-5 col-sm-6 box-col-6">
+        <div class="portfolio-table recent-table table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="currency-icon warning">
+                      <svg>
+                        <use href="assets/svg/icon-sprite.svg#beta"></use>
+                      </svg>
+                    </div>
+                    <div>
+                      <h6 class="f-14 mb-1">Bitcoin</h6>
+                      <div class="d-flex align-items-center gap-1"><span class="status bg-success"></span><span class="f-light">BTC</span></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <h6 class="f-14 f-w-400 mb-1">BTC 0.00876543</h6>
+                  <span class="font-success">$14,987.13</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="currency-icon success">
+                      <svg>
+                        <use href="assets/svg/icon-sprite.svg#ltc"></use>
+                      </svg>
+                    </div>
+                    <div>
+                      <h6 class="f-14 mb-1">Ethereum</h6>
+                      <div class="d-flex align-items-center gap-1"><span class="status bg-danger"></span><span class="f-light">ETH</span></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <h6 class="f-14 f-w-400 mb-1">ETC 1.60876543</h6>
+                  <span class="font-danger">$49,987.13</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="currency-icon primary">
+                      <svg>
+                        <use href="assets/svg/icon-sprite.svg#eth"></use>
+                      </svg>
+                    </div>
+                    <div>
+                      <h6 class="f-14 mb-1">Litecoin</h6>
+                      <div class="d-flex align-items-center gap-1"><span class="status bg-success"></span><span class="f-light">LTC</span></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <h6 class="f-14 f-w-400 mb-1">LTC 1.60876543</h6>
+                  <span class="font-success">$35,571.25</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="currency-icon light-blue">
+                      <svg>
+                        <use href="assets/svg/icon-sprite.svg#dash"></use>
+                      </svg>
+                    </div>
+                    <div>
+                      <h6 class="f-14 mb-1">Dash</h6>
+                      <div class="d-flex align-items-center gap-1"><span class="status bg-success"></span><span class="f-light">DSH</span></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-end">
+                  <h6 class="f-14 f-w-400 mb-1">DSH 1.80741510</h6>
+                  <span class="font-success">$17,047.30</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<app-breadcrumb [title]="'Chart'" [items]="['Widgets']" [active_item]="'Chart'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-4 col-md-12 box-col-12">
+      <app-common-top-chart [data]="optionslinechart"></app-common-top-chart>
+    </div>
+    <div class="col-xl-4 col-md-12 box-col-12">
+      <app-common-top-chart [data]="chart2"></app-common-top-chart>
+    </div>
+    <div class="col-xl-4 col-md-12 box-col-12">
+      <app-common-top-chart [data]="chart3"></app-common-top-chart>
+    </div>
+  </div>
+  <div class="row">
+    <!-- <div class="col-md-12 box-col-12">
+      <app-monthly-history></app-monthly-history>
+    </div> -->
+    <div class="col-xl-6 col-lg-12 box-col-6 xl-50">
+      <app-skill-status></app-skill-status>
+    </div>
+    <div class="col-xl-6 col-lg-12 box-col-6 xl-50">
+      <app-order-status></app-order-status>
+    </div>
+  </div>
+  <div class="row">
+    <div class="xl-50 col-xl-7 col-lg-12">
+      <app-live-products></app-live-products>
+    </div>
+    <div class="xl-50 col-xl-5 col-lg-12">
+      <app-turn-over></app-turn-over>
+    </div>
+    <div class="xl-50 col-xl-6 col-lg-12">
+      <app-cryptocurrency-prices></app-cryptocurrency-prices>
+    </div>
+    <div class="xl-50 col-xl-6 col-lg-12">
+      <app-crypto-annotations></app-crypto-annotations>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 box-col-12">
+        <app-stock-market></app-stock-market>
+      </div>
+      <div class="col-xl-5 col-lg-12 box-col-12">
+        <app-finance></app-finance>
+      </div>
+      <div class="col-xl-7 col-lg-12 box-col-6">
+        <app-order-status2></app-order-status2>
+      </div>
+      <div class="xl-50 col-xl-5 col-lg-12 box-col-6">
+        <app-monthly-sales></app-monthly-sales>
+      </div>
+      <div class="xl-50 col-xl-7 col-lg-12 box-col-12">
+        <app-uses></app-uses>
+      </div>
+    </div>
+  </div>
+</div>

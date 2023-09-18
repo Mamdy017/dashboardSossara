@@ -1,0 +1,76 @@
+<app-breadcrumb [title]="'Clipboard'" [items]="['Forms', 'Form Widgets']" [active_item]="'Clipboard'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          <h5>Clipboard On Text Input</h5>
+        </div>
+        <div class="card-body">
+          <div class="clipboaard-container">
+            <p class="card-description">Cut/copy from text input</p>
+            <input class="form-control" id="clipboardExample1" type="text" placeholder="type some text to copy / cut" #userinput>
+            <div class="mt-3">
+              <button class="btn btn-primary btn-clipboard" type="button" (click)="copyInputMessage(userinput)"><i class="fa fa-copy"></i> Copy</button>
+              <button class="btn btn-secondary btn-clipboard-cut ms-1" type="button" (click)="cutInputMessage(userinput)"><i class="fa fa-cut"></i> Cut</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          <h5>Clipboard On Textarea</h5>
+        </div>
+        <div class="card-body">
+          <div class="clipboaard-container">
+            <p class="card-description">Cut/copy from textarea</p>
+            <textarea class="form-control" id="clipboardExample2" rows="1" spellcheck="false" #textareaInput>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has</textarea>
+            <div class="mt-3">
+              <button class="btn btn-primary btn-clipboard" type="button" (click)="copyInputMessage(textareaInput)"><i class="fa fa-copy"></i> Copy</button>
+              <button class="btn btn-secondary btn-clipboard-cut ms-1" type="button" (click)="cutInputMessage(textareaInput)"><i class="fa fa-cut"></i> Cut</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          <h5>Clipboard On Paragraph</h5>
+        </div>
+        <div class="card-body">
+          <div class="clipboaard-container">
+            <p class="card-description">Copy from Paragraph</p>
+            <h6 class="border rounded card-body" id="clipboardExample3" #paragraph>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </h6>
+            <div class="mt-3">
+              <button class="btn btn-primary btn-clipboard" type="button" (click)="copyInputMessage(paragraph)"><i class="fa fa-copy"></i> Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-sm-12 col-xl-6">
+      <div class="card">
+        <div class="card-header">
+          <h5>Copy Portion From Paragraph</h5>
+        </div>
+        <div class="card-body">
+          <div class="clipboaard-container">
+            <p class="card-description">Copy Portion From Paragraph</p>
+            <h6 class="border rounded card-body">Lorem ipsum <span class="bg-primary text-white p-1" id="clipboardExample4">dolor sit amet</span>, consectetur adipiscing elit,
+                                                      sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </h6>
+            <div class="mt-3">
+              <button class="btn btn-primary btn-clipboard" type="button" data-clipboard-action="copy" data-clipboard-target="#clipboardExample4"><i class="fa fa-copy"></i> Copy highlighted text</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

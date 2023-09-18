@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-header">
+    <h5>Crypto Annotations</h5>
+  </div>
+  <div class="card-body">
+    <div class="chart-container">
+      <div class="row">
+        <div class="col-12">
+          <div id="crypto-annotation">
+            <apx-chart
+              [series]="cryptoAnnotations.series"
+              [chart]="cryptoAnnotations.chart"
+              [annotations]="cryptoAnnotations.annotations"
+              [dataLabels]="cryptoAnnotations.dataLabels"
+              [stroke]="cryptoAnnotations.stroke"
+              [grid]="cryptoAnnotations.grid"
+              [title]="cryptoAnnotations.title"
+              [colors]="cryptoAnnotations.colors"
+              [labels]="cryptoAnnotations.labels"
+              [xaxis]="cryptoAnnotations.xaxis"
+              [responsive]="cryptoAnnotations.responsive"
+            ></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

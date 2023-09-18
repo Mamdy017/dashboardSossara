@@ -1,0 +1,32 @@
+<swiper
+  [direction]="'vertical'"
+  [loop]="true"
+  [autoHeight]="true"
+  [allowTouchMove]="false"
+  [autoplay]="{ delay: 1000, disableOnInteraction: false }"
+  [pagination]="false"
+  [navigation]="false" class="mb-2"
+>
+  <ng-template data-swiper-autoplay="2500" swiperSlide>
+    <div class="d-flex h-100">
+      <img src="assets/images/giftools.gif" alt="gif" />
+      <h6 class="mb-0 f-w-400">
+        <span >Bienvenue! </span
+        ><span class="f-light font-primary"
+          >Mamady Camara.</span
+        >
+      </h6>
+      
+    </div>
+  </ng-template>
+  <ng-template data-swiper-autoplay="5000" swiperSlide>
+    <div class="d-flex h-100">
+      <img src="assets/images/giftools.gif" alt="gif" />
+      <h6 class="mb-0 f-w-400">
+        <span class="f-light">Prêt pour une journée productive ?
+        </span>
+      </h6>
+   
+    </div>
+  </ng-template>
+</swiper>

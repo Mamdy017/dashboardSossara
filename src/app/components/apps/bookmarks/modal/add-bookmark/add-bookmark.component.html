@@ -1,0 +1,89 @@
+<ng-template #addBookmark let-modal style="width: 50% !important;">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Ajouter un nouveau blog</h5>
+    <button
+      class="btn-close"
+      type="button"
+      data-dismiss="modal"
+      aria-label="Close"
+      data-original-title=""
+      title=""
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form
+      class="form-bookmark needs-validation"
+      id="bookmark-form"
+      [formGroup]="addBlog"
+      novalidate=""
+    >
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="bm-weburl">Titre <span style="color: red">*</span></label>
+          <input
+            class="form-control"
+            placeholder="titre"
+            formControlName="titre"
+            type="text"
+            required=""
+            autocomplete="off"
+          />
+          <div
+            *ngIf="
+              addBlog.controls.titre.touched &&
+              addBlog.controls.titre.errors?.required
+            "
+            class="text text-danger mt-1"
+          >
+            Titre est obligatoire
+          </div>
+        </div>
+
+        <div class="form-group col-md-12">
+          <label>Description <span style="color: red">*</span></label>
+          <textarea
+            class="form-control"
+            id="bm-desc"
+            required=""
+            formControlName="description"
+            autocomplete="off"
+          ></textarea>
+          <div
+            *ngIf="
+              addBlog.controls.description.touched &&
+              addBlog.controls.description.errors?.required
+            "
+            class="text text-danger mt-1"
+          >
+            La description est obligatoire
+          </div>
+        </div>
+        <div class="form-group col-md-12 mb-0">
+          <label>Image <span style="color: red">*</span></label>
+          <input
+            class="form-control"
+            type="file"
+            accept="image/*"
+            (change)="onFileChangePhoto($event)"
+            required=""
+            autocomplete="off"
+          />
+        </div>
+       
+      </div>
+      <input id="index_var" type="hidden" value="6" />
+      <button
+        class="btn monBlog btn-hover-effect w-100"
+        type="button"
+        class="btn monBlog  d-block w-100"
+        [disabled]="!addBlog.valid"
+        (click)="ajouterBlock()"
+        type="button"
+      >
+        Ajouter
+      </button>
+    
+    </form>
+  </div>
+</ng-template>

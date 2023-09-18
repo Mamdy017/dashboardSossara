@@ -1,0 +1,232 @@
+<app-breadcrumb
+  [title]="'User'"
+  [items]="['Apps', 'User']"
+  [active_item]="'Edit Profile'"
+></app-breadcrumb>
+<div class="container-fluid py-4">
+  <div class="edit-profile">
+    <div class="row">
+      <div class="col-xl-8">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title mb-0">Mon Profile</h4>
+            <div class="card-options">
+              <a
+                class="card-options-collapse"
+                href="javascript:void(0)"
+                data-bs-toggle="card-collapse"
+                ><i class="fe fe-chevron-up"></i></a
+              ><a
+                class="card-options-remove"
+                href="javascript:void(0)"
+                data-bs-toggle="card-remove"
+                ><i class="fe fe-x"></i
+              ></a>
+            </div>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="myProfile">
+              <div class="row mb-2">
+                <div class="col-auto">
+                  <img
+                    class="img-70 rounded-circle"
+                    alt=""
+                    src="{{ generateImageUrl(currentUser.user?.photo) }}"
+                  />
+                </div>
+                <div class="col">
+                  <h3 class="mb-1">{{ currentUser?.user?.username }}</h3>
+                  <p class="mb-4">
+                    {{
+                      currentUser?.user?.role[0] === "ROLE_ADMIN"
+                        ? "Admin"
+                        : currentUser.user.role[0] === "ROLE_SUPER_ADMIN"
+                        ? "Super Admin"
+                        : ""
+                    }}
+                  </p>
+                </div>
+              </div>
+              <!-- <div class="mb-3">
+                <h6 class="form-label">Bio</h6>
+                <textarea class="form-control" rows="5" formControlName="bio"></textarea>
+              </div> -->
+              <div class="row">
+                <div class="mb-3 col-xl-6">
+                  <label class="form-label">Nom d'utilisateur</label>
+                  <input
+                    class="form-control"
+                    value="{{ currentUser?.user?.username }}"
+                    formControlName="username"
+                  />
+                </div>
+                <div class="mb-3 col-xl-6">
+                  <label class="form-label">Adress email</label>
+                  <input
+                    class="form-control"
+                    value="{{ currentUser?.user?.email }}"
+                    formControlName="email"
+                  />
+                </div>
+                <div class="mb-3 col-xl-6">
+                  <label class="form-label">Téléphone</label>
+                  <input
+                    class="form-control"
+                    value="{{ currentUser?.user?.telephone }}"
+                    formControlName="telephone"
+                  />
+                </div>
+                <div class="mb-3 col-xl-6">
+                  <label class="form-label">Photo</label>
+                  <input
+                    class="form-control"
+                    type="file"
+                    (change)="onFileChangePhoto($event)"
+                    accept="image/*"
+                    value="{{ generateImageUrl(currentUser.user?.photo) }}"
+                    formControlName="photo"
+                  />
+                </div>
+              </div>
+
+              <div class="form-footer">
+                <button
+                  class="btn btn-primary d-block w-100 me-1"
+                  (click)="modifier()"
+                >
+                  Modifier
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-4">
+        <form class="card" [formGroup]="editProfile">
+          <div class="card-header">
+            <h6 class="card-title mb-0">Modifier le mot de passe</h6>
+            <div class="card-options">
+              <a
+                class="card-options-collapse"
+                href="javascript:void(0)"
+                data-bs-toggle="card-collapse"
+                ><i class="fe fe-chevron-up"></i></a
+              ><a
+                class="card-options-remove"
+                href="javascript:void(0)"
+                data-bs-toggle="card-remove"
+                ><i class="fe fe-x"></i
+              ></a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="form-group">
+                <label class="col-form-label">Ancien mot de passe</label>
+                <input
+                  class="form-control"
+                  [type]="last ? 'text' : 'password'"
+                  formControlName="lastPassword"
+                  required=""
+                  placeholder="*********"
+                />
+                <div class="show-hide" (click)="showlastPassword()" *ngIf="!last">
+                  <i class="fa fa-eye"></i>
+                </div>
+                <div class="show-hide" (click)="showlastPassword()" *ngIf="last">
+                  <i class="fa fa-eye-slash"></i>
+                </div>
+              </div>
+              <div
+                *ngIf="
+                  editProfile.controls.lastPassword.touched &&
+                  editProfile.controls.lastPassword.errors?.required
+                "
+                class="text text-danger mt-1"
+              >
+                Mot de passe oblogatoire
+              </div>
+              <div class="form-group">
+                <label class="col-form-label">Nouveau mot de passe</label>
+                <input
+                  class="form-control"
+                  [type]="show ? 'text' : 'password'"
+                  formControlName="password"
+                  required=""
+                  placeholder="*********"
+                />
+                <div class="show-hide" (click)="showPassword()" *ngIf="!show">
+                  <i class="fa fa-eye"></i>
+                </div>
+                <div class="show-hide" (click)="showPassword()" *ngIf="show">
+                  <i class="fa fa-eye-slash"></i>
+                </div>
+              </div>
+              <div
+                *ngIf="
+                  editProfile.controls.password.touched &&
+                  editProfile.controls.password.errors?.required
+                "
+                class="text text-danger mt-1"
+              >
+                Mot de passe oblogatoire
+              </div>
+              <div class="form-group">
+                <label class="col-form-label"
+                  >Confirmez votre mot de passe</label
+                >
+                <input
+                  class="form-control"
+                  [type]="showcn ? 'text' : 'password'"
+                  formControlName="cnPpassword"
+                  required=""
+                  placeholder="*********"
+                />
+                <div
+                  class="show-hide"
+                  (click)="showCnPassword()"
+                  *ngIf="!showcn"
+                >
+                  <i class="fa fa-eye"></i>
+                </div>
+                <div
+                  class="show-hide"
+                  (click)="showCnPassword()"
+                  *ngIf="showcn"
+                >
+                  <i class="fa fa-eye-slash"></i>
+                </div>
+              </div>
+
+              <div
+                *ngIf="
+                  (editProfile?.get('cnPpassword')?.invalid &&
+                    (editProfile?.get('cnPpassword')?.dirty ||
+                      editProfile?.get('cnPpassword')?.touched)) ||
+                  editProfile?.get('password')?.value !==
+                    editProfile?.get('cnPpassword')?.value
+                "
+                class="text-danger"
+              >
+                <div
+                  *ngIf="
+                    editProfile?.get('cnPpassword')?.hasError('required')
+                  "
+                ></div>
+                Les mots de passe ne correspondent pas.
+              </div>
+
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <button class="btn monBlog" [disabled]="!editProfile.valid"
+            (click)="updatePassword()"
+            type="button">
+             Modifier
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,166 @@
+@import './variables';
+
+aw-wizard {
+  display: flex;
+  justify-content: flex-start;
+
+  .wizard-steps {
+    top: 0;
+    display: flex;
+  }
+}
+
+aw-wizard.horizontal {
+  flex-direction: column;
+
+  .wizard-steps {
+    width: 100%;
+    flex-direction: row;
+  }
+}
+
+aw-wizard.vertical {
+  flex-direction: row;
+
+  .wizard-steps {
+    min-width: calc(100% - 280px);
+    width: 80%;
+    height: 100%;
+    flex-direction: column;
+  }
+}
+
+
+aw-wizard-step,
+aw-wizard-completion-step {
+  height: auto;
+  width: 100%;
+}
+
+
+aw-wizard-navigation-bar {
+
+  ul.steps-indicator {
+
+    // http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    li {
+      position: relative;
+      pointer-events: none;
+
+      a .label {
+        color: $aw-label-color-default;
+        line-height: $aw-text-height;
+        font-size: $aw-text-height;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: 0.25s;
+      }
+    }
+
+    li.navigable {
+      pointer-events: auto;
+
+      a {
+        cursor: pointer;
+      }
+
+      a:hover .label {
+        color: $aw-label-color-hover;
+      }
+    }
+  }
+}
+
+@if 'horizontal' is in $aw-layouts {
+  aw-wizard-navigation-bar.horizontal {
+
+    ul.steps-indicator {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      margin: 0;
+      width: 100%;
+      list-style: none;
+
+      @for $number-of-components from 2 through 10 {
+        &.steps-#{$number-of-components} {
+          &:after {
+            left: 100% / $number-of-components / 2;
+            right: 100% / $number-of-components / 2;
+          }
+
+          li {
+            width: 100% / $number-of-components;
+          }
+        }
+      }
+
+      li {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+
+        a .label {
+          display: inline-block;
+          padding-top: $aw-text-padding-bottom;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@if 'vertical' is in $aw-layouts {
+  aw-wizard-navigation-bar.vertical {
+    max-width: 280px;
+    width: 20%;
+    height: 100%;
+    position: sticky;
+    top: 0;
+
+    ul.steps-indicator {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      list-style: none;
+      margin: auto;
+
+      li {
+
+        &:not(:last-child) {
+          margin-bottom: 0;
+          padding-bottom: $aw-distance-between-steps;
+        }
+
+        a {
+          // center labels vertically
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .label {
+            margin-left: $aw-text-margin-left;
+            text-align: left;
+
+            @include rtl {
+              margin-left: 0;
+              margin-right: $aw-text-margin-left;
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include aw-define-styles();

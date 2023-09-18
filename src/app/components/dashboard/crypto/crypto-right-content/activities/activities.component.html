@@ -1,0 +1,26 @@
+<div class="card">
+   <div class="card-header card-no-border">
+     <div class="header-top">
+       <h5 class="m-0">Activities</h5>
+       <div class="card-header-right-icon">
+         <div class="dropdown icon-dropdown">
+           <button class="btn dropdown-toggle" type="button" (click)="toggle()"><i class="icon-more-alt"></i></button>
+           <div class="dropdown-menu dropdown-menu-end" [class.show]="show" ><a class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Yearly</a><a class="dropdown-item" href="#">Monthly</a></div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div class="card-body pt-0 activity-card">
+     <div class="appointment-table customer-table table-responsive">
+       <table class="table table-bordernone">
+         <tbody>
+           <tr *ngFor="let item of activities">
+             <td><img class="img-fluid img-40 rounded-circle me-2" src="{{item.profile}}" alt="user" /></td>
+             <td class="img-content-box"><a class="d-block f-w-500" href="user-profile.html">{{item.name}}</a><span class="f-light">To : {{item.to}}</span></td>
+             <td class="text-end"><span class="font-{{item.className}}">{{item.count}}</span><span class="d-block f-light">{{item.count2}}</span></td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+   </div>
+ </div>

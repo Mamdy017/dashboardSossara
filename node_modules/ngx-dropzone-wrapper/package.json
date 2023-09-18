@@ -1,0 +1,39 @@
+{
+  "name": "ngx-dropzone-wrapper",
+  "description": "Angular wrapper library for Dropzone",
+  "bugs": "https://github.com/zefoy/ngx-dropzone-wrapper/issues",
+  "version": "13.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zefoy/ngx-dropzone-wrapper.git"
+  },
+  "dependencies": {
+    "dropzone": "^5.9.0",
+    "tslib": "^2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=9.0.0",
+    "@angular/core": ">=9.0.0"
+  },
+  "module": "fesm2015/ngx-dropzone-wrapper.mjs",
+  "es2020": "fesm2020/ngx-dropzone-wrapper.mjs",
+  "esm2020": "esm2020/ngx-dropzone-wrapper.mjs",
+  "fesm2020": "fesm2020/ngx-dropzone-wrapper.mjs",
+  "fesm2015": "fesm2015/ngx-dropzone-wrapper.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/ngx-dropzone-wrapper.mjs",
+      "es2020": "./fesm2020/ngx-dropzone-wrapper.mjs",
+      "es2015": "./fesm2015/ngx-dropzone-wrapper.mjs",
+      "node": "./fesm2015/ngx-dropzone-wrapper.mjs",
+      "default": "./fesm2020/ngx-dropzone-wrapper.mjs"
+    }
+  },
+  "sideEffects": false
+}

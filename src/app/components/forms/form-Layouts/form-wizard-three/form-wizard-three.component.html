@@ -1,0 +1,131 @@
+<app-breadcrumb [title]="'Form Wizard Three'" [items]="['Forms', 'Form Layout']" [active_item]="'Form Wizard Three'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Form Wizard with icon</h5>
+        </div>
+        <div class="card-body">
+          <aw-wizard navBarLayout="large-filled-symbols">
+            <aw-wizard-step>
+              <form [formGroup]="firstFormGroup">
+                <ng-template awWizardStepSymbol>
+                  <div class="f1-step">
+                    <div class="f1-step-icon"><i class="fa fa-user"></i></div>
+                    <p>Registration</p>
+                  </div>
+                </ng-template>
+                <div class="mb-3">
+                  <label for="name">First Name</label>
+                  <input class="form-control" id="name" type="text" placeholder="Johan" formControlName="firstName"
+                    onlyAlphabets>
+                  <ng-container class="invalid"
+                    *ngIf="firstFormGroup.get('firstName').hasError('required') && firstFormGroup.get('firstName').touched">
+                    First Name is required</ng-container>
+                </div>
+                <div class="mb-3">
+                  <label for="lname">Last Name</label>
+                  <input class="form-control" id="lname" type="text" placeholder="Deo" formControlName="lastName"
+                    onlyAlphabets>
+                  <ng-container class="invalid"
+                    *ngIf="firstFormGroup.get('lastName').hasError('required') && firstFormGroup.get('lastName').touched">
+                    Last Name is required</ng-container>
+                </div>
+                <button class="btn btn-primary pull-right" type="submit" awNextStep
+                  [disabled]="!firstFormGroup.valid">Next</button>
+              </form>
+            </aw-wizard-step>
+            <aw-wizard-step>
+              <form [formGroup]="secondFormGroup">
+                <ng-template awWizardStepSymbol>
+                  <div class="f1-step">
+                    <div class="f1-step-icon"><i class="fa fa-key"></i></div>
+                    <p>Email</p>
+                  </div>
+                </ng-template>
+                <div class="mb-3 m-t-15">
+                  <label for="exampleFormControlInput1">Email address</label>
+                  <input class="form-control" id="exampleFormControlInput1" type="email" placeholder="name@example.com"
+                    formControlName="email">
+                  <ng-container class="invalid"
+                    *ngIf="secondFormGroup.get('email').hasError('required') && secondFormGroup.get('email').touched">
+                    Email is required</ng-container>
+                  <ng-container class="invalid"
+                    *ngIf="secondFormGroup.get('email').hasError('email') && secondFormGroup.get('email').touched">
+                    Email is not Proper</ng-container>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password"
+                    formControlName="password">
+                  <ng-container class="invalid"
+                    *ngIf="secondFormGroup.get('password').hasError('required') && secondFormGroup.get('password').touched">
+                    Password is required</ng-container>
+                </div>
+                <div class="mb-3" *ngIf="secondFormGroup.get('password').valid">
+                  <label for="exampleInputPassword1">Confirm Password</label>
+                  <input class="form-control" id="exampleInputcPassword1" type="password" placeholder="Enter again"
+                    formControlName="cnfPassword">
+                  <ng-container class="invalid"
+                    *ngIf="secondFormGroup.get('cnfPassword').hasError('required') && secondFormGroup.get('cnfPassword').touched">
+                    Confirm Password is required</ng-container>
+                  <ng-container class="invalid"
+                    *ngIf="secondFormGroup.get('cnfPassword').hasError('mustMatch') && secondFormGroup.get('cnfPassword').touched">
+                    Passwords Doesnt match</ng-container>
+                </div>
+                <button class="btn btn-primary pull-right" type="button" awNextStep
+                  [disabled]="!secondFormGroup.valid">Next</button>
+                <button class="btn btn-secondary pull-right me-1" type="button" awPreviousStep>Previous</button>
+              </form>
+            </aw-wizard-step>
+            <aw-wizard-completion-step awEnableBackLinks>
+              <form [formGroup]="thirdFormGroup">
+                <ng-template awWizardStepSymbol>
+                  <div class="f1-step">
+                    <div class="f1-step-icon"><i class="fa fa-twitter"></i></div>
+                    <p>Birth Date</p>
+                  </div>
+                </ng-template>
+                <div class="mb-3">
+                  <label class="sr-only">DD</label>
+                  <input class="form-control" id="dd" type="number" placeholder="dd" formControlName="dd" onlyNumbers>
+                  <ng-container class="invalid"
+                    *ngIf="thirdFormGroup.get('dd').hasError('required') && thirdFormGroup.get('dd').touched">
+                    Day is required</ng-container>
+                  <ng-container class="invalid"
+                    *ngIf="thirdFormGroup.get('dd').hasError('pattern') && thirdFormGroup.get('dd').touched">
+                    Day Should be Only two characters</ng-container>
+                </div>
+                <div class="mb-3">
+                  <label class="sr-only">MM</label>
+                  <input class="form-control" id="mm" type="number" placeholder="mm" formControlName="mm" onlyNumbers>
+                  <ng-container class="invalid"
+                    *ngIf="thirdFormGroup.get('mm').hasError('required') && thirdFormGroup.get('mm').touched">
+                    Month is required</ng-container>
+                  <ng-container class="invalid"
+                    *ngIf="thirdFormGroup.get('mm').hasError('pattern') && thirdFormGroup.get('mm').touched">
+                    Month Should be Only two characters</ng-container>
+                </div>
+                <div class="mb-3">
+                  <label class="sr-only">YYYY</label>
+                  <input class="form-control" id="yyyy" type="number" placeholder="yyyy" formControlName="yyyy"
+                    onlyNumbers>
+                  <ng-container class="invalid"
+                    *ngIf="thirdFormGroup.get('yyyy').hasError('required') && thirdFormGroup.get('yyyy').touched">
+                    Year is required</ng-container>
+                  <ng-container class="invalid"
+                    *ngIf="thirdFormGroup.get('yyyy').hasError('pattern') && thirdFormGroup.get('yyyy').touched">
+                    Year Should be Only 4 characters</ng-container>
+                </div>
+                <button class="btn btn-success pull-right" type="button" (click)="finish()"
+                  [disabled]="!thirdFormGroup.valid">Finish</button>
+                <button class="btn btn-secondary pull-right me-1" id="prevBtn" type="button" awPreviousStep>Previous</button>
+              </form>
+            </aw-wizard-completion-step>
+          </aw-wizard>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

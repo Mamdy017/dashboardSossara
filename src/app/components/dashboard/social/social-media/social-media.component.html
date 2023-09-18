@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-4 col-sm-6">
+    <app-social-media-chart [data]="facebook"></app-social-media-chart>
+  </div>
+  <div class="col-md-4 col-sm-6">
+   <app-social-media-chart [data]="instagram"></app-social-media-chart>
+  </div>
+  <div class="col-md-4">
+    <app-social-media-chart [data]="twitter"></app-social-media-chart>
+  </div>
+  <div class="col-md-8">
+    <app-subscribers></app-subscribers>
+  </div>
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-12 col-sm-6">
+        <app-clicks-charts [data]="photoClicks"></app-clicks-charts>
+      </div>
+      <div class="col-md-12 col-sm-6">
+         <app-clicks-charts [data]="likeClicks"></app-clicks-charts>
+      </div>
+    </div>
+  </div>
+</div>

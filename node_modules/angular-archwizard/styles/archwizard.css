@@ -1,0 +1,1022 @@
+aw-wizard {
+  display: flex;
+  justify-content: flex-start;
+}
+aw-wizard .wizard-steps {
+  top: 0;
+  display: flex;
+}
+
+aw-wizard.horizontal {
+  flex-direction: column;
+}
+aw-wizard.horizontal .wizard-steps {
+  width: 100%;
+  flex-direction: row;
+}
+
+aw-wizard.vertical {
+  flex-direction: row;
+}
+aw-wizard.vertical .wizard-steps {
+  min-width: calc(100% - 280px);
+  width: 80%;
+  height: 100%;
+  flex-direction: column;
+}
+
+aw-wizard-step,
+aw-wizard-completion-step {
+  height: auto;
+  width: 100%;
+}
+
+aw-wizard-navigation-bar ul.steps-indicator * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+aw-wizard-navigation-bar ul.steps-indicator li {
+  position: relative;
+  pointer-events: none;
+}
+aw-wizard-navigation-bar ul.steps-indicator li a .label {
+  color: #808080;
+  line-height: 14px;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: 0.25s;
+}
+aw-wizard-navigation-bar ul.steps-indicator li.navigable {
+  pointer-events: auto;
+}
+aw-wizard-navigation-bar ul.steps-indicator li.navigable a {
+  cursor: pointer;
+}
+aw-wizard-navigation-bar ul.steps-indicator li.navigable a:hover .label {
+  color: #4d4d4d;
+}
+
+aw-wizard-navigation-bar.horizontal ul.steps-indicator {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0;
+  width: 100%;
+  list-style: none;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-2:after {
+  left: 25%;
+  right: 25%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-2 li {
+  width: 50%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-3:after {
+  left: 16.6666666667%;
+  right: 16.6666666667%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-3 li {
+  width: 33.3333333333%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-4:after {
+  left: 12.5%;
+  right: 12.5%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-4 li {
+  width: 25%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-5:after {
+  left: 10%;
+  right: 10%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-5 li {
+  width: 20%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-6:after {
+  left: 8.3333333333%;
+  right: 8.3333333333%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-6 li {
+  width: 16.6666666667%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-7:after {
+  left: 7.1428571429%;
+  right: 7.1428571429%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-7 li {
+  width: 14.2857142857%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-8:after {
+  left: 6.25%;
+  right: 6.25%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-8 li {
+  width: 12.5%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-9:after {
+  left: 5.5555555556%;
+  right: 5.5555555556%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-9 li {
+  width: 11.1111111111%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-10:after {
+  left: 5%;
+  right: 5%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator.steps-10 li {
+  width: 10%;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator li {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+aw-wizard-navigation-bar.horizontal ul.steps-indicator li a .label {
+  display: inline-block;
+  padding-top: 10px;
+  text-align: center;
+}
+
+aw-wizard-navigation-bar.vertical {
+  max-width: 280px;
+  width: 20%;
+  height: 100%;
+  position: sticky;
+  top: 0;
+}
+aw-wizard-navigation-bar.vertical ul.steps-indicator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+  margin: auto;
+}
+aw-wizard-navigation-bar.vertical ul.steps-indicator li:not(:last-child) {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+}
+aw-wizard-navigation-bar.vertical ul.steps-indicator li a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+aw-wizard-navigation-bar.vertical ul.steps-indicator li a .label {
+  margin-left: 15px;
+  text-align: left;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical ul.steps-indicator li a .label {
+  margin-left: 0;
+  margin-right: 15px;
+  text-align: right;
+}
+
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator {
+  padding: 24px 0 10px 0;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li:not(:last-child):after {
+  background-color: #E6E6E6;
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: calc(100% - 14px);
+  top: -7px;
+  left: calc(50% + 7px);
+}
+[dir=rtl] aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li:not(:last-child):after {
+  left: auto;
+  right: calc(50% + 7px);
+}
+
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li .step-indicator {
+  top: -14px;
+  left: calc(50% - 7px);
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 14px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #E6E6E6;
+}
+[dir=rtl] aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li .step-indicator {
+  left: auto;
+  right: calc(50% - 7px);
+}
+
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.optional .step-indicator {
+  background-color: #38ef38;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.done .step-indicator {
+  background-color: #339933;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.current .step-indicator {
+  background-color: #808080;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.editing .step-indicator {
+  background-color: #FF0000;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.completed .step-indicator {
+  background-color: #339933;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.navigable a:hover .step-indicator {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 14px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #d9d9d9;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.navigable.optional a:hover .step-indicator {
+  background-color: #20ed20;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.navigable.done a:hover .step-indicator {
+  background-color: #2d862d;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.navigable.current a:hover .step-indicator {
+  background-color: #737373;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.navigable.editing a:hover .step-indicator {
+  background-color: #e60000;
+}
+aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.navigable.completed a:hover .step-indicator {
+  background-color: #2d862d;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator {
+  padding: 60px 0 10px 0;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li:not(:last-child):after {
+  background-color: #E6E6E6;
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: calc(100% - 50px);
+  top: -25px;
+  left: calc(50% + 25px);
+}
+[dir=rtl] aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li:not(:last-child):after {
+  left: auto;
+  right: calc(50% + 25px);
+}
+
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li .step-indicator {
+  top: -50px;
+  left: calc(50% - 25px);
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #E6E6E6;
+}
+[dir=rtl] aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li .step-indicator {
+  left: auto;
+  right: calc(50% - 25px);
+}
+
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.optional .step-indicator {
+  background-color: #38ef38;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.done .step-indicator {
+  background-color: #339933;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.current .step-indicator {
+  background-color: #808080;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.editing .step-indicator {
+  background-color: #FF0000;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.completed .step-indicator {
+  background-color: #339933;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.navigable a:hover .step-indicator {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #d9d9d9;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.navigable.optional a:hover .step-indicator {
+  background-color: #20ed20;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.navigable.done a:hover .step-indicator {
+  background-color: #2d862d;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.navigable.current a:hover .step-indicator {
+  background-color: #737373;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.navigable.editing a:hover .step-indicator {
+  background-color: #e60000;
+}
+aw-wizard-navigation-bar.horizontal.large-filled ul.steps-indicator li.navigable.completed a:hover .step-indicator {
+  background-color: #2d862d;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator {
+  padding: 60px 0 10px 0;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li:not(:last-child):after {
+  background-color: #E6E6E6;
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: calc(100% - 50px);
+  top: -25px;
+  left: calc(50% + 25px);
+}
+[dir=rtl] aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li:not(:last-child):after {
+  left: auto;
+  right: calc(50% + 25px);
+}
+
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li .step-indicator {
+  top: -50px;
+  left: calc(50% - 25px);
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 46px;
+  transition: 0.25s;
+  border-radius: 100%;
+  border: 2px solid #E6E6E6;
+}
+[dir=rtl] aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li .step-indicator {
+  left: auto;
+  right: calc(50% - 25px);
+}
+
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.optional .step-indicator {
+  border: 2px solid #38ef38;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.done .step-indicator {
+  border: 2px solid #339933;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.current .step-indicator {
+  border: 2px solid #808080;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.editing .step-indicator {
+  border: 2px solid #FF0000;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.completed .step-indicator {
+  border: 2px solid #339933;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.navigable a:hover .step-indicator {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 46px;
+  transition: 0.25s;
+  border-radius: 100%;
+  border: 2px solid #cdcdcd;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.navigable.optional a:hover .step-indicator {
+  border: 2px solid #12e212;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.navigable.done a:hover .step-indicator {
+  border: 2px solid #267326;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.navigable.current a:hover .step-indicator {
+  border: 2px solid #676767;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.navigable.editing a:hover .step-indicator {
+  border: 2px solid #cc0000;
+}
+aw-wizard-navigation-bar.horizontal.large-empty ul.steps-indicator li.navigable.completed a:hover .step-indicator {
+  border: 2px solid #267326;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator {
+  padding: 60px 0 10px 0;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li:not(:last-child):after {
+  background-color: #E6E6E6;
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: calc(100% - 50px);
+  top: -25px;
+  left: calc(50% + 25px);
+}
+[dir=rtl] aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li:not(:last-child):after {
+  left: auto;
+  right: calc(50% + 25px);
+}
+
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li .step-indicator {
+  top: -50px;
+  left: calc(50% - 25px);
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #E6E6E6;
+  color: black;
+}
+[dir=rtl] aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li .step-indicator {
+  left: auto;
+  right: calc(50% - 25px);
+}
+
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.optional .step-indicator {
+  background-color: #38ef38;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.done .step-indicator {
+  background-color: #339933;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.current .step-indicator {
+  background-color: #808080;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.editing .step-indicator {
+  background-color: #FF0000;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.completed .step-indicator {
+  background-color: #339933;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.navigable a:hover .step-indicator {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #d9d9d9;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.navigable.optional a:hover .step-indicator {
+  background-color: #20ed20;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.navigable.done a:hover .step-indicator {
+  background-color: #2d862d;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.navigable.current a:hover .step-indicator {
+  background-color: #737373;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.navigable.editing a:hover .step-indicator {
+  background-color: #e60000;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-filled-symbols ul.steps-indicator li.navigable.completed a:hover .step-indicator {
+  background-color: #2d862d;
+  color: black;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator {
+  padding: 60px 0 10px 0;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li:not(:last-child):after {
+  background-color: #E6E6E6;
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: calc(100% - 50px);
+  top: -25px;
+  left: calc(50% + 25px);
+}
+[dir=rtl] aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li:not(:last-child):after {
+  left: auto;
+  right: calc(50% + 25px);
+}
+
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li .step-indicator {
+  top: -50px;
+  left: calc(50% - 25px);
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 46px;
+  transition: 0.25s;
+  border-radius: 100%;
+  border: 2px solid #E6E6E6;
+  color: #E6E6E6;
+}
+[dir=rtl] aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li .step-indicator {
+  left: auto;
+  right: calc(50% - 25px);
+}
+
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.optional .step-indicator {
+  border: 2px solid #38ef38;
+  color: #38ef38;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.done .step-indicator {
+  border: 2px solid #339933;
+  color: #339933;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.current .step-indicator {
+  border: 2px solid #808080;
+  color: #808080;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.editing .step-indicator {
+  border: 2px solid #FF0000;
+  color: #FF0000;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.completed .step-indicator {
+  border: 2px solid #339933;
+  color: #339933;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.navigable a:hover .step-indicator {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 46px;
+  transition: 0.25s;
+  border-radius: 100%;
+  border: 2px solid #cdcdcd;
+  color: #cdcdcd;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.navigable.optional a:hover .step-indicator {
+  border: 2px solid #12e212;
+  color: #12e212;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.navigable.done a:hover .step-indicator {
+  border: 2px solid #267326;
+  color: #267326;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.navigable.current a:hover .step-indicator {
+  border: 2px solid #676767;
+  color: #676767;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.navigable.editing a:hover .step-indicator {
+  border: 2px solid #cc0000;
+  color: #cc0000;
+}
+aw-wizard-navigation-bar.horizontal.large-empty-symbols ul.steps-indicator li.navigable.completed a:hover .step-indicator {
+  border: 2px solid #267326;
+  color: #267326;
+}
+
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator {
+  padding: 5px 5px 5px 19px;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.small ul.steps-indicator {
+  padding: 5px 19px 5px 5px;
+}
+
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li:not(:last-child):after {
+  background-color: #E6E6E6;
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 14px;
+  height: calc(100% - 14px);
+  width: 1px;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.small ul.steps-indicator li:not(:last-child):after {
+  left: auto;
+  right: -7px;
+}
+
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li a {
+  min-height: 14px;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li .step-indicator {
+  top: 0;
+  left: -14px;
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 14px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #E6E6E6;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.small ul.steps-indicator li .step-indicator {
+  left: auto;
+  right: -14px;
+}
+
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.optional .step-indicator {
+  background-color: #38ef38;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.done .step-indicator {
+  background-color: #339933;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.current .step-indicator {
+  background-color: #808080;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.editing .step-indicator {
+  background-color: #FF0000;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.completed .step-indicator {
+  background-color: #339933;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.navigable a:hover .step-indicator {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 14px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #d9d9d9;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.navigable.optional a:hover .step-indicator {
+  background-color: #20ed20;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.navigable.done a:hover .step-indicator {
+  background-color: #2d862d;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.navigable.current a:hover .step-indicator {
+  background-color: #737373;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.navigable.editing a:hover .step-indicator {
+  background-color: #e60000;
+}
+aw-wizard-navigation-bar.vertical.small ul.steps-indicator li.navigable.completed a:hover .step-indicator {
+  background-color: #2d862d;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator {
+  padding: 5px 5px 5px 55px;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator {
+  padding: 5px 55px 5px 5px;
+}
+
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li:not(:last-child):after {
+  background-color: #E6E6E6;
+  content: "";
+  position: absolute;
+  left: -25px;
+  top: 50px;
+  height: calc(100% - 50px);
+  width: 1px;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li:not(:last-child):after {
+  left: auto;
+  right: -25px;
+}
+
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li a {
+  min-height: 50px;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li .step-indicator {
+  top: 0;
+  left: -50px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #E6E6E6;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li .step-indicator {
+  left: auto;
+  right: -50px;
+}
+
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.optional .step-indicator {
+  background-color: #38ef38;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.done .step-indicator {
+  background-color: #339933;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.current .step-indicator {
+  background-color: #808080;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.editing .step-indicator {
+  background-color: #FF0000;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.completed .step-indicator {
+  background-color: #339933;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.navigable a:hover .step-indicator {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #d9d9d9;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.navigable.optional a:hover .step-indicator {
+  background-color: #20ed20;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.navigable.done a:hover .step-indicator {
+  background-color: #2d862d;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.navigable.current a:hover .step-indicator {
+  background-color: #737373;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.navigable.editing a:hover .step-indicator {
+  background-color: #e60000;
+}
+aw-wizard-navigation-bar.vertical.large-filled ul.steps-indicator li.navigable.completed a:hover .step-indicator {
+  background-color: #2d862d;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator {
+  padding: 5px 5px 5px 55px;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator {
+  padding: 5px 55px 5px 5px;
+}
+
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li:not(:last-child):after {
+  background-color: #E6E6E6;
+  content: "";
+  position: absolute;
+  left: -25px;
+  top: 50px;
+  height: calc(100% - 50px);
+  width: 1px;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li:not(:last-child):after {
+  left: auto;
+  right: -25px;
+}
+
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li a {
+  min-height: 50px;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li .step-indicator {
+  top: 0;
+  left: -50px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 46px;
+  transition: 0.25s;
+  border-radius: 100%;
+  border: 2px solid #E6E6E6;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li .step-indicator {
+  left: auto;
+  right: -50px;
+}
+
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.optional .step-indicator {
+  border: 2px solid #38ef38;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.done .step-indicator {
+  border: 2px solid #339933;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.current .step-indicator {
+  border: 2px solid #808080;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.editing .step-indicator {
+  border: 2px solid #FF0000;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.completed .step-indicator {
+  border: 2px solid #339933;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.navigable a:hover .step-indicator {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 46px;
+  transition: 0.25s;
+  border-radius: 100%;
+  border: 2px solid #cdcdcd;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.navigable.optional a:hover .step-indicator {
+  border: 2px solid #12e212;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.navigable.done a:hover .step-indicator {
+  border: 2px solid #267326;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.navigable.current a:hover .step-indicator {
+  border: 2px solid #676767;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.navigable.editing a:hover .step-indicator {
+  border: 2px solid #cc0000;
+}
+aw-wizard-navigation-bar.vertical.large-empty ul.steps-indicator li.navigable.completed a:hover .step-indicator {
+  border: 2px solid #267326;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator {
+  padding: 5px 5px 5px 55px;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator {
+  padding: 5px 55px 5px 5px;
+}
+
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li:not(:last-child):after {
+  background-color: #E6E6E6;
+  content: "";
+  position: absolute;
+  left: -25px;
+  top: 50px;
+  height: calc(100% - 50px);
+  width: 1px;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li:not(:last-child):after {
+  left: auto;
+  right: -25px;
+}
+
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li a {
+  min-height: 50px;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li .step-indicator {
+  top: 0;
+  left: -50px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #E6E6E6;
+  color: black;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li .step-indicator {
+  left: auto;
+  right: -50px;
+}
+
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.optional .step-indicator {
+  background-color: #38ef38;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.done .step-indicator {
+  background-color: #339933;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.current .step-indicator {
+  background-color: #808080;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.editing .step-indicator {
+  background-color: #FF0000;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.completed .step-indicator {
+  background-color: #339933;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.navigable a:hover .step-indicator {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50px;
+  transition: 0.25s;
+  border-radius: 100%;
+  background-color: #d9d9d9;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.navigable.optional a:hover .step-indicator {
+  background-color: #20ed20;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.navigable.done a:hover .step-indicator {
+  background-color: #2d862d;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.navigable.current a:hover .step-indicator {
+  background-color: #737373;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.navigable.editing a:hover .step-indicator {
+  background-color: #e60000;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-filled-symbols ul.steps-indicator li.navigable.completed a:hover .step-indicator {
+  background-color: #2d862d;
+  color: black;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator {
+  padding: 5px 5px 5px 55px;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator {
+  padding: 5px 55px 5px 5px;
+}
+
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li:not(:last-child):after {
+  background-color: #E6E6E6;
+  content: "";
+  position: absolute;
+  left: -25px;
+  top: 50px;
+  height: calc(100% - 50px);
+  width: 1px;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li:not(:last-child):after {
+  left: auto;
+  right: -25px;
+}
+
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li a {
+  min-height: 50px;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li .step-indicator {
+  top: 0;
+  left: -50px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 46px;
+  transition: 0.25s;
+  border-radius: 100%;
+  border: 2px solid #E6E6E6;
+  color: #E6E6E6;
+}
+[dir=rtl] aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li .step-indicator {
+  left: auto;
+  right: -50px;
+}
+
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.optional .step-indicator {
+  border: 2px solid #38ef38;
+  color: #38ef38;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.done .step-indicator {
+  border: 2px solid #339933;
+  color: #339933;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.current .step-indicator {
+  border: 2px solid #808080;
+  color: #808080;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.editing .step-indicator {
+  border: 2px solid #FF0000;
+  color: #FF0000;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.completed .step-indicator {
+  border: 2px solid #339933;
+  color: #339933;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.navigable a:hover .step-indicator {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 46px;
+  transition: 0.25s;
+  border-radius: 100%;
+  border: 2px solid #cdcdcd;
+  color: #cdcdcd;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.navigable.optional a:hover .step-indicator {
+  border: 2px solid #12e212;
+  color: #12e212;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.navigable.done a:hover .step-indicator {
+  border: 2px solid #267326;
+  color: #267326;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.navigable.current a:hover .step-indicator {
+  border: 2px solid #676767;
+  color: #676767;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.navigable.editing a:hover .step-indicator {
+  border: 2px solid #cc0000;
+  color: #cc0000;
+}
+aw-wizard-navigation-bar.vertical.large-empty-symbols ul.steps-indicator li.navigable.completed a:hover .step-indicator {
+  border: 2px solid #267326;
+  color: #267326;
+}
+
+/*# sourceMappingURL=archwizard.css.map */

@@ -1,0 +1,114 @@
+<div class="card">
+  <div class="card-header card-no-border">
+    <div class="header-top gap-1">
+      <h5 style="color: #000">Ajouter un blog</h5>
+      <div class="dropdown icon-dropdown">
+        <button class="btn dropdown-toggle" type="button" (click)="toggle()">
+          <i class="icon-more-alt"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-end" [class.show]="show">
+          <a class="dropdown-item" href="#">Weekly</a
+          ><a class="dropdown-item" href="#">Monthly</a
+          ><a class="dropdown-item" href="#">Yearly</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body pt-0">
+    <form class="theme-form crypto-form" [formGroup]="addBlog">
+      <div class="mb-1">
+        <label class="form-label f-light" for="money"
+          >Titre <span style="color: red">*</span></label
+        >
+        <div class="position-relative">
+          <input
+            class="form-control"
+            id="money"
+            type="text"
+            placeholder="titre"
+            formControlName="titre"
+          />
+          <!-- <select class="form-select crypto-select warning">
+             <option>USD</option>
+             <option>BTC</option>
+             <option>LTC</option>
+             <option>ETH</option>
+           </select> -->
+
+          <div
+            *ngIf="
+              addBlog.controls.titre.touched &&
+              addBlog.controls.titre.errors?.required
+            "
+            class="text text-danger mt-1"
+          >
+            Titre est obligatoire
+          </div>
+        </div>
+      </div>
+      <div class="mb-1">
+        <label class="form-label f-light" for="coin"
+          >Description <span style="color: red">*</span>
+        </label>
+        <div class="position-relative">
+          <textarea
+            class="form-control"
+            rows="4"
+            placeholder="Donne une description pour le blog "
+            formControlName="description"
+          ></textarea>
+
+          <!-- <input class="form-control" id="description" type="text" placeholder="Description "   formControlName="description"> -->
+          <!-- <select class="form-select crypto-select primary">
+             <option>BTC</option>
+             <option>USD</option>
+             <option>LTC</option>
+             <option>ETH</option>
+           </select> -->
+
+          <div
+            *ngIf="
+              addBlog.controls.description.touched &&
+              addBlog.controls.description.errors?.required
+            "
+            class="text text-danger mt-1"
+          >
+            La description est obligatoire
+          </div>
+        </div>
+      </div>
+      <div class="mb-1">
+        <label class="form-label f-light" for="coin"
+          >Image <span style="color: red">*</span></label
+        >
+        <div class="position-relative">
+          <input
+            class="form-control"
+            id="coin"
+            type="file"
+            accept="image/*"
+            (change)="onFileChangePhoto($event)"
+            placeholder="0.0043"
+            formControlName="photo"
+          />
+          <!-- <select class="form-select crypto-select primary">
+            <option>BTC</option>
+            <option>USD</option>
+            <option>LTC</option>
+            <option>ETH</option>
+          </select> -->
+        </div>
+      </div>
+      <button
+        class="btn monBlog btn-hover-effect w-100"
+        type="button"
+        class="btn monBlog  d-block w-100"
+        [disabled]="!addBlog.valid"
+        (click)="ajouterBlock()"
+        type="button"
+      >
+        Ajouter
+      </button>
+    </form>
+  </div>
+</div>

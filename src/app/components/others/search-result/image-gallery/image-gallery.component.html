@@ -1,0 +1,12 @@
+<div class="my-gallery row gallery-with-description" itemscope="" gallerize>
+  <figure class="col-xl-3 col-sm-6" itemprop="associatedMedia" *ngFor="let img of imageData" >
+    <a href="javascript:void(0)" itemprop="contentUrl">
+      <img  [src]="img.srcUrl" class="img-fluid" />
+      <div class="caption">
+        <h4>Portfolio Title</h4>
+        <p>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+          standard dummy.</p>
+      </div>
+    </a>
+  </figure>
+</div>

@@ -1,0 +1,36 @@
+import { CropperOptions, OutputFormat } from './cropper-options.interface';
+import { ImageTransform } from './image-transform.interface';
+import { SimpleChanges } from '@angular/core';
+export declare class CropperSettings {
+    format: OutputFormat;
+    maintainAspectRatio: boolean;
+    transform: ImageTransform;
+    aspectRatio: number;
+    resetCropOnAspectRatioChange: boolean;
+    resizeToWidth: number;
+    resizeToHeight: number;
+    cropperMinWidth: number;
+    cropperMinHeight: number;
+    cropperMaxHeight: number;
+    cropperMaxWidth: number;
+    cropperStaticWidth: number;
+    cropperStaticHeight: number;
+    canvasRotation: number;
+    initialStepSize: number;
+    roundCropper: boolean;
+    onlyScaleDown: boolean;
+    imageQuality: number;
+    autoCrop: boolean;
+    backgroundColor: string | null;
+    containWithinAspectRatio: boolean;
+    hideResizeSquares: boolean;
+    alignImage: 'left' | 'center';
+    cropperScaledMinWidth: number;
+    cropperScaledMinHeight: number;
+    cropperScaledMaxWidth: number;
+    cropperScaledMaxHeight: number;
+    stepSize: number;
+    setOptions(options: Partial<CropperOptions>): void;
+    setOptionsFromChanges(changes: SimpleChanges): void;
+    private validateOptions;
+}

@@ -1,0 +1,19 @@
+<div class="card o-hidden">
+  <div class="chart-widget-top">
+    <div class="row card-body pb-0 m-0">
+      <div class="col-xl-9 col-lg-8 col-9 p-0">
+        <h6 class="mb-2">{{data.title}}</h6>
+        <h4>{{data.count}}</h4>
+        <span>{{data.subTitle}}</span>
+      </div>
+      <div class="col-xl-3 col-lg-4 col-3 text-end p-0">
+        <h6 class="txt-{{data.colorClass}}">{{data.growth}}</h6>
+      </div>
+    </div>
+    <div>
+      <div id="chart-widget1">
+         <apx-chart [chart]="data.chart" [dataLabels]="data.dataLabels" [stroke]="data.stroke" [xaxis]="data.xaxis" [yaxis]="data.yaxis" [grid]="data.grid" [fill]="data.fill" [colors]="data.colors" [series]="data.series" [tooltip]="data.tooltip" [responsive]="data.responsive"></apx-chart>
+      </div>
+    </div>
+  </div>
+</div>

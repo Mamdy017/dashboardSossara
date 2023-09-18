@@ -1,0 +1,135 @@
+/**
+ * timer-box.component
+ */
+import { ChangeDetectionStrategy, Component, EventEmitter, ElementRef, ViewChild, Input, Output } from '@angular/core';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/common";
+export class OwlTimerBoxComponent {
+    constructor() {
+        this.showDivider = false;
+        this.step = 1;
+        this.valueChange = new EventEmitter();
+        this.inputChange = new EventEmitter();
+        this.inputStream = new Subject();
+        this.inputStreamSub = Subscription.EMPTY;
+        this.hasFocus = false;
+        this.onValueInputMouseWheelBind = this.onValueInputMouseWheel.bind(this);
+    }
+    get displayValue() {
+        if (this.hasFocus) {
+            // Don't try to reformat the value that user is currently editing
+            return this.valueInput.nativeElement.value;
+        }
+        const value = this.boxValue || this.value;
+        if (value === null || isNaN(value)) {
+            return '';
+        }
+        return value < 10 ? '0' + value.toString() : value.toString();
+    }
+    get owlDTTimerBoxClass() {
+        return true;
+    }
+    ngOnInit() {
+        this.inputStreamSub = this.inputStream.pipe(debounceTime(750)).subscribe((val) => {
+            if (val) {
+                const inputValue = coerceNumberProperty(val, 0);
+                this.updateValueViaInput(inputValue);
+            }
+        });
+        this.bindValueInputMouseWheel();
+    }
+    ngOnDestroy() {
+        this.unbindValueInputMouseWheel();
+        this.inputStreamSub.unsubscribe();
+    }
+    upBtnClicked() {
+        this.updateValue(this.value + this.step);
+    }
+    downBtnClicked() {
+        this.updateValue(this.value - this.step);
+    }
+    handleInputChange(val) {
+        this.inputStream.next(val);
+    }
+    focusIn() {
+        this.hasFocus = true;
+    }
+    focusOut(value) {
+        this.hasFocus = false;
+        if (value) {
+            const inputValue = coerceNumberProperty(value, 0);
+            this.updateValueViaInput(inputValue);
+        }
+    }
+    updateValue(value) {
+        this.valueChange.emit(value);
+    }
+    updateValueViaInput(value) {
+        if (value > this.max || value < this.min) {
+            return;
+        }
+        this.inputChange.emit(value);
+    }
+    onValueInputMouseWheel(event) {
+        event = event || window.event;
+        const delta = event.wheelDelta || -event.deltaY || -event.detail;
+        if (delta > 0) {
+            if (!this.upBtnDisabled) {
+                this.upBtnClicked();
+            }
+        }
+        else if (delta < 0) {
+            if (!this.downBtnDisabled) {
+                this.downBtnClicked();
+            }
+        }
+        event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+    }
+    bindValueInputMouseWheel() {
+        this.valueInput.nativeElement.addEventListener('onwheel' in document ? 'wheel' : 'mousewheel', this.onValueInputMouseWheelBind);
+    }
+    unbindValueInputMouseWheel() {
+        this.valueInput.nativeElement.removeEventListener('onwheel' in document ? 'wheel' : 'mousewheel', this.onValueInputMouseWheelBind);
+    }
+}
+OwlTimerBoxComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.5", ngImport: i0, type: OwlTimerBoxComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+OwlTimerBoxComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.3.5", type: OwlTimerBoxComponent, selector: "owl-date-time-timer-box", inputs: { showDivider: "showDivider", upBtnAriaLabel: "upBtnAriaLabel", upBtnDisabled: "upBtnDisabled", downBtnAriaLabel: "downBtnAriaLabel", downBtnDisabled: "downBtnDisabled", boxValue: "boxValue", value: "value", min: "min", max: "max", step: "step", inputLabel: "inputLabel" }, outputs: { valueChange: "valueChange", inputChange: "inputChange" }, host: { properties: { "class.owl-dt-timer-box": "owlDTTimerBoxClass" } }, viewQueries: [{ propertyName: "valueInput", first: true, predicate: ["valueInput"], descendants: true, static: true }], exportAs: ["owlDateTimeTimerBox"], ngImport: i0, template: "<div *ngIf=\"showDivider\" class=\"owl-dt-timer-divider\" aria-hidden=\"true\"></div>\n<button class=\"owl-dt-control-button owl-dt-control-arrow-button\"\n        type=\"button\" tabindex=\"-1\"\n        [disabled]=\"upBtnDisabled\"\n        [attr.aria-label]=\"upBtnAriaLabel\"\n        (click)=\"upBtnClicked()\">\n    <span class=\"owl-dt-control-button-content\" tabindex=\"-1\">\n        <!-- <editor-fold desc=\"SVG Arrow Up\"> -->\n    <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n                 version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 451.847 451.846\"\n                 style=\"enable-background:new 0 0 451.847 451.846;\" xml:space=\"preserve\"\n                 width=\"100%\" height=\"100%\">\n                    <path d=\"M248.292,106.406l194.281,194.29c12.365,12.359,12.365,32.391,0,44.744c-12.354,12.354-32.391,12.354-44.744,0\n                        L225.923,173.529L54.018,345.44c-12.36,12.354-32.395,12.354-44.748,0c-12.359-12.354-12.359-32.391,0-44.75L203.554,106.4\n                        c6.18-6.174,14.271-9.259,22.369-9.259C234.018,97.141,242.115,100.232,248.292,106.406z\"/>\n                </svg>\n        <!-- </editor-fold> -->\n    </span>\n</button>\n<label class=\"owl-dt-timer-content\">\n    <input class=\"owl-dt-timer-input\" maxlength=\"2\"\n           [value]=\"displayValue\"\n           (keydown.arrowup)=\"!upBtnDisabled && upBtnClicked()\"\n           (keydown.arrowdown)=\"!downBtnDisabled && downBtnClicked()\"\n           (input)=\"handleInputChange(valueInput.value)\"\n           (focusin)=\"focusIn()\"\n           (focusout)=\"focusOut(valueInput.value)\"\n           #valueInput>\n    <span class=\"owl-hidden-accessible\">{{inputLabel}}</span>\n</label>\n<button class=\"owl-dt-control-button owl-dt-control-arrow-button\"\n        type=\"button\" tabindex=\"-1\"\n        [disabled]=\"downBtnDisabled\"\n        [attr.aria-label]=\"downBtnAriaLabel\"\n        (click)=\"downBtnClicked()\">\n    <span class=\"owl-dt-control-button-content\" tabindex=\"-1\">\n        <!-- <editor-fold desc=\"SVG Arrow Down\"> -->\n    <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n                 version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 451.847 451.846\"\n                 style=\"enable-background:new 0 0 451.847 451.846;\" xml:space=\"preserve\"\n                 width=\"100%\" height=\"100%\">\n                    <path d=\"M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751\n                        c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0\n                        c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z\"/>\n                </svg>\n        <!-- </editor-fold> -->\n    </span>\n</button>\n", styles: [""], directives: [{ type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.5", ngImport: i0, type: OwlTimerBoxComponent, decorators: [{
+            type: Component,
+            args: [{ exportAs: 'owlDateTimeTimerBox', selector: 'owl-date-time-timer-box', preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, host: {
+                        '[class.owl-dt-timer-box]': 'owlDTTimerBoxClass'
+                    }, template: "<div *ngIf=\"showDivider\" class=\"owl-dt-timer-divider\" aria-hidden=\"true\"></div>\n<button class=\"owl-dt-control-button owl-dt-control-arrow-button\"\n        type=\"button\" tabindex=\"-1\"\n        [disabled]=\"upBtnDisabled\"\n        [attr.aria-label]=\"upBtnAriaLabel\"\n        (click)=\"upBtnClicked()\">\n    <span class=\"owl-dt-control-button-content\" tabindex=\"-1\">\n        <!-- <editor-fold desc=\"SVG Arrow Up\"> -->\n    <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n                 version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 451.847 451.846\"\n                 style=\"enable-background:new 0 0 451.847 451.846;\" xml:space=\"preserve\"\n                 width=\"100%\" height=\"100%\">\n                    <path d=\"M248.292,106.406l194.281,194.29c12.365,12.359,12.365,32.391,0,44.744c-12.354,12.354-32.391,12.354-44.744,0\n                        L225.923,173.529L54.018,345.44c-12.36,12.354-32.395,12.354-44.748,0c-12.359-12.354-12.359-32.391,0-44.75L203.554,106.4\n                        c6.18-6.174,14.271-9.259,22.369-9.259C234.018,97.141,242.115,100.232,248.292,106.406z\"/>\n                </svg>\n        <!-- </editor-fold> -->\n    </span>\n</button>\n<label class=\"owl-dt-timer-content\">\n    <input class=\"owl-dt-timer-input\" maxlength=\"2\"\n           [value]=\"displayValue\"\n           (keydown.arrowup)=\"!upBtnDisabled && upBtnClicked()\"\n           (keydown.arrowdown)=\"!downBtnDisabled && downBtnClicked()\"\n           (input)=\"handleInputChange(valueInput.value)\"\n           (focusin)=\"focusIn()\"\n           (focusout)=\"focusOut(valueInput.value)\"\n           #valueInput>\n    <span class=\"owl-hidden-accessible\">{{inputLabel}}</span>\n</label>\n<button class=\"owl-dt-control-button owl-dt-control-arrow-button\"\n        type=\"button\" tabindex=\"-1\"\n        [disabled]=\"downBtnDisabled\"\n        [attr.aria-label]=\"downBtnAriaLabel\"\n        (click)=\"downBtnClicked()\">\n    <span class=\"owl-dt-control-button-content\" tabindex=\"-1\">\n        <!-- <editor-fold desc=\"SVG Arrow Down\"> -->\n    <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\n                 version=\"1.1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 451.847 451.846\"\n                 style=\"enable-background:new 0 0 451.847 451.846;\" xml:space=\"preserve\"\n                 width=\"100%\" height=\"100%\">\n                    <path d=\"M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751\n                        c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0\n                        c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z\"/>\n                </svg>\n        <!-- </editor-fold> -->\n    </span>\n</button>\n", styles: [""] }]
+        }], ctorParameters: function () { return []; }, propDecorators: { showDivider: [{
+                type: Input
+            }], upBtnAriaLabel: [{
+                type: Input
+            }], upBtnDisabled: [{
+                type: Input
+            }], downBtnAriaLabel: [{
+                type: Input
+            }], downBtnDisabled: [{
+                type: Input
+            }], boxValue: [{
+                type: Input
+            }], value: [{
+                type: Input
+            }], min: [{
+                type: Input
+            }], max: [{
+                type: Input
+            }], step: [{
+                type: Input
+            }], inputLabel: [{
+                type: Input
+            }], valueChange: [{
+                type: Output
+            }], inputChange: [{
+                type: Output
+            }], valueInput: [{
+                type: ViewChild,
+                args: ['valueInput', { static: true }]
+            }] } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGltZXItYm94LmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL3BpY2tlci9zcmMvbGliL2RhdGUtdGltZS90aW1lci1ib3guY29tcG9uZW50LnRzIiwiLi4vLi4vLi4vLi4vLi4vcHJvamVjdHMvcGlja2VyL3NyYy9saWIvZGF0ZS10aW1lL3RpbWVyLWJveC5jb21wb25lbnQuaHRtbCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILE9BQU8sRUFDSCx1QkFBdUIsRUFDdkIsU0FBUyxFQUNULFlBQVksRUFDWixVQUFVLEVBQ1YsU0FBUyxFQUNULEtBQUssRUFHTCxNQUFNLEVBQ1QsTUFBTSxlQUFlLENBQUM7QUFDdkIsT0FBTyxFQUFFLG9CQUFvQixFQUFFLE1BQU0sdUJBQXVCLENBQUM7QUFDN0QsT0FBTyxFQUFFLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxNQUFNLENBQUM7QUFDN0MsT0FBTyxFQUFFLFlBQVksRUFBRSxNQUFNLGdCQUFnQixDQUFDOzs7QUFjOUMsTUFBTSxPQUFPLG9CQUFvQjtJQTZEN0I7UUEzRFMsZ0JBQVcsR0FBRyxLQUFLLENBQUM7UUFzQnBCLFNBQUksR0FBRyxDQUFDLENBQUM7UUFJUixnQkFBVyxHQUFHLElBQUksWUFBWSxFQUFVLENBQUM7UUFFekMsZ0JBQVcsR0FBRyxJQUFJLFlBQVksRUFBVSxDQUFDO1FBRTNDLGdCQUFXLEdBQUcsSUFBSSxPQUFPLEVBQVUsQ0FBQztRQUVwQyxtQkFBYyxHQUFHLFlBQVksQ0FBQyxLQUFLLENBQUM7UUFFcEMsYUFBUSxHQUFHLEtBQUssQ0FBQztRQXVCakIsK0JBQTBCLEdBQUcsSUFBSSxDQUFDLHNCQUFzQixDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQztJQUc1RSxDQUFDO0lBeEJELElBQUksWUFBWTtRQUNaLElBQUksSUFBSSxDQUFDLFFBQVEsRUFBRTtZQUNmLGlFQUFpRTtZQUNqRSxP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RztzQkFBWCxLQUFLO2dCQUVHLEdBQUc7c0JBQVgsS0FBSztnQkFFRyxJQUFJO3NCQUFaLEtBQUs7Z0JBRUcsVUFBVTtzQkFBbEIsS0FBSztnQkFFSSxXQUFXO3NCQUFwQixNQUFNO2dCQUVHLFdBQVc7c0JBQXBCLE1BQU07Z0JBNEJDLFVBQVU7c0JBRGpCLFNBQVM7dUJBQUMsWUFBWSxFQUFFLEVBQUUsTUFBTSxFQUFFLElBQUksRUFBRSIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogdGltZXItYm94LmNvbXBvbmVudFxuICovXG5cbmltcG9ydCB7XG4gICAgQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3ksXG4gICAgQ29tcG9uZW50LFxuICAgIEV2ZW50RW1pdHRlcixcbiAgICBFbGVtZW50UmVmLFxuICAgIFZpZXdDaGlsZCxcbiAgICBJbnB1dCxcbiAgICBPbkRlc3Ryb3ksXG4gICAgT25Jbml0LFxuICAgIE91dHB1dFxufSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IGNvZXJjZU51bWJlclByb3BlcnR5IH0gZnJvbSAnQGFuZ3VsYXIvY2RrL2NvZXJjaW9uJztcbmltcG9ydCB7IFN1YmplY3QsIFN1YnNjcmlwdGlvbiB9IGZyb20gJ3J4anMnO1xuaW1wb3J0IHsgZGVib3VuY2VUaW1lIH0gZnJvbSAncnhqcy9vcGVyYXRvcnMnO1xuXG5AQ29tcG9uZW50KHtcbiAgICBleHBvcnRBczogJ293bERhdGVUaW1lVGltZXJCb3gnLFxuICAgIHNlbGVjdG9yOiAnb3dsLWRhdGUtdGltZS10aW1lci1ib3gnLFxuICAgIHRlbXBsYXRlVXJsOiAnLi90aW1lci1ib3guY29tcG9uZW50Lmh0bWwnLFxuICAgIHN0eWxlVXJsczogWycuL3RpbWVyLWJveC5jb21wb25lbnQuc2NzcyddLFxuICAgIHByZXNlcnZlV2hpdGVzcGFjZXM6IGZhbHNlLFxuICAgIGNoYW5nZURldGVjdGlvbjogQ2hhbmdlRGV0ZWN0aW9uU3RyYXRlZ3kuT25QdXNoLFxuICAgIGhvc3Q6IHtcbiAgICAgICAgJ1tjbGFzcy5vd2wtZHQtdGltZXItYm94XSc6ICdvd2xEVFRpbWVyQm94Q2xhc3MnXG4gICAgfVxufSlcblxuZXhwb3J0IGNsYXNzIE93bFRpbWVyQm94Q29tcG9uZW50IGltcGxlbWVudHMgT25Jbml0LCBPbkRlc3Ryb3kge1xuXG4gICAgQElucHV0KCkgc2hvd0RpdmlkZXIgPSBmYWxzZTtcblxuICAgIEBJbnB1dCgpIHVwQnRuQXJpYUxhYmVsOiBzdHJpbmc7XG5cbiAgICBASW5wdXQoKSB1cEJ0bkRpc2FibGVkOiBib29sZWFuO1xuXG4gICAgQElucHV0KCkgZG93bkJ0bkFyaWFMYWJlbDogc3RyaW5nO1xuXG4gICAgQElucHV0KCkgZG93bkJ0bkRpc2FibGVkOiBib29sZWFuO1xuXG4gICAgLyoqXG4gICAgICogVmFsdWUgd291bGQgYmUgZGlzcGxheWVkIGluIHRoZSBib3hcbiAgICAgKiBJZiBpdCBpcyBudWxsLCB0aGUgYm94IHdvdWxkIGRpc3BsYXkgW3ZhbHVlXVxuICAgICAqICovXG4gICAgQElucHV0KCkgYm94VmFsdWU6IG51bWJlcjtcblxuICAgIEBJbnB1dCgpIHZhbHVlOiBudW1iZXI7XG5cbiAgICBASW5wdXQoKSBtaW46IG51bWJlcjtcblxuICAgIEBJbnB1dCgpIG1heDogbnVtYmVyO1xuXG4gICAgQElucHV0KCkgc3RlcCA9IDE7XG5cbiAgICBASW5wdXQoKSBpbnB1dExhYmVsOiBzdHJpbmc7XG5cbiAgICBAT3V0cHV0KCkgdmFsdWVDaGFuZ2UgPSBuZXcgRXZlbnRFbWl0dGVyPG51bWJlcj4oKTtcblxuICAgIEBPdXRwdXQoKSBpbnB1dENoYW5nZSA9IG5ldyBFdmVudEVtaXR0ZXI8bnVtYmVyPigpO1xuXG4gICAgcHJpdmF0ZSBpbnB1dFN0cmVhbSA9IG5ldyBTdWJqZWN0PHN0cmluZz4oKTtcblxuICAgIHByaXZhdGUgaW5wdXRTdHJlYW1TdWIgPSBTdWJzY3JpcHRpb24uRU1QVFk7XG5cbiAgICBwcml2YXRlIGhhc0ZvY3VzID0gZmFsc2U7XG5cbiAgICBnZXQgZGlzcGxheVZhbHVlKCk6IHN0cmluZyB7XG4gICAgICAgIGlmICh0aGlzLmhhc0ZvY3VzKSB7XG4gICAgICAgICAgICAvLyBEb24ndCB0cnkgdG8gcmVmb3JtYXQgdGhlIHZhbHVlIHRoYXQgdXNlciBpcyBjdXJyZW50bHkgZWRpdGluZ1xuICAgICAgICAgICAgcmV0dXJuIHRoaXMudmFsdWVJbnB1dC5uYXRpdmVFbGVtZW50LnZhbHVlO1xuICAgICAgICB9XG5cbiAgICAgICAgY29uc3QgdmFsdWUgPSB0aGlzLmJveFZhbHVlIHx8IHRoaXMudmFsdWU7XG5cbiAgICAgICAgaWYgKHZhbHVlID09PSBudWxsIHx8IGlzTmFOKHZhbHVlKSkge1xuICAgICAgICAgICAgcmV0dXJuICcnO1xuICAgICAgICB9XG5cbiAgICAgICAgcmV0dXJuIHZhbHVlIDwgMTAgPyAnMCcgKyB2YWx1ZS50b1N0cmluZygpIDogdmFsdWUudG9TdHJpbmcoKTtcbiAgICB9XG5cbiAgICBnZXQgb3dsRFRUaW1lckJveENsYXNzKCk6IGJvb2xlYW4ge1xuICAgICAgICByZXR1cm4gdHJ1ZTtcbiAgICB9XG5cbiAgICBAVmlld0NoaWxkKCd2YWx1ZUlucHV0JywgeyBzdGF0aWM6IHRydWUgfSlcbiAgICBwcml2YXRlIHZhbHVlSW5wdXQ6IEVsZW1lbnRSZWY8SFRNTElucHV0RWxlbWVudD47XG4gICAgcHJpdmF0ZSBvblZhbHVlSW5wdXRNb3VzZVdoZWVsQmluZCA9IHRoaXMub25WYWx1ZUlucHV0TW91c2VXaGVlbC5iaW5kKHRoaXMpO1xuXG4gICAgY29uc3RydWN0b3IoKSB7XG4gICAgfVxuXG4gICAgcHVibGljIG5nT25Jbml0KCkge1xuICAgICAgICB0aGlzLmlucHV0U3RyZWFtU3ViID0gdGhpcy5pbnB1dFN0cmVhbS5waXBlKGRlYm91bmNlVGltZSg3NTApKS5zdWJzY3JpYmUoKCB2YWw6IHN0cmluZyApID0+IHtcbiAgICAgICAgICAgIGlmICh2YWwpIHtcbiAgICAgICAgICAgICAgICBjb25zdCBpbnB1dFZhbHVlID0gY29lcmNlTnVtYmVyUHJvcGVydHkodmFsLCAwKTtcbiAgICAgICAgICAgICAgICB0aGlzLnVwZGF0ZVZhbHVlVmlhSW5wdXQoaW5wdXRWYWx1ZSk7XG4gICAgICAgICAgICB9XG4gICAgICAgIH0pO1xuICAgICAgICB0aGlzLmJpbmRWYWx1ZUlucHV0TW91c2VXaGVlbCgpO1xuICAgIH1cblxuICAgIHB1YmxpYyBuZ09uRGVzdHJveSgpOiB2b2lkIHtcbiAgICAgICAgdGhpcy51bmJpbmRWYWx1ZUlucHV0TW91c2VXaGVlbCgpO1xuICAgICAgICB0aGlzLmlucHV0U3RyZWFtU3ViLnVuc3Vic2NyaWJlKCk7XG4gICAgfVxuXG4gICAgcHVibGljIHVwQnRuQ2xpY2tlZCgpOiB2b2lkIHtcbiAgICAgICAgdGhpcy51cGRhdGVWYWx1ZSh0aGlzLnZhbHVlICsgdGhpcy5zdGVwKTtcbiAgICB9XG5cbiAgICBwdWJsaWMgZG93bkJ0bkNsaWNrZWQoKTogdm9pZCB7XG4gICAgICAgIHRoaXMudXBkYXRlVmFsdWUodGhpcy52YWx1ZSAtIHRoaXMuc3RlcCk7XG4gICAgfVxuXG4gICAgcHVibGljIGhhbmRsZUlucHV0Q2hhbmdlKHZhbDogc3RyaW5nICk6IHZvaWQge1xuICAgICAgICB0aGlzLmlucHV0U3RyZWFtLm5leHQodmFsKTtcbiAgICB9XG5cbiAgICBwdWJsaWMgZm9jdXNJbigpOiB2b2lkIHtcbiAgICAgICAgdGhpcy5oYXNGb2N1cyA9IHRydWU7XG4gICAgfVxuXG4gICAgcHVibGljIGZvY3VzT3V0KHZhbHVlOiBzdHJpbmcpOiB2b2lkIHtcbiAgICAgICAgdGhpcy5oYXNGb2N1cyA9IGZhbHNlO1xuICAgICAgICBpZiAodmFsdWUpIHtcbiAgICAgICAgICAgIGNvbnN0IGlucHV0VmFsdWUgPSBjb2VyY2VOdW1iZXJQcm9wZXJ0eSh2YWx1ZSwgMCk7XG4gICAgICAgICAgICB0aGlzLnVwZGF0ZVZhbHVlVmlhSW5wdXQoaW5wdXRWYWx1ZSk7XG4gICAgICAgIH1cbiAgICB9XG5cbiAgICBwcml2YXRlIHVwZGF0ZVZhbHVlKCB2YWx1ZTogbnVtYmVyICk6IHZvaWQge1xuICAgICAgICB0aGlzLnZhbHVlQ2hhbmdlLmVtaXQodmFsdWUpO1xuICAgIH1cblxuICAgIHByaXZhdGUgdXBkYXRlVmFsdWVWaWFJbnB1dCggdmFsdWU6IG51bWJlciApOiB2b2lkIHtcbiAgICAgICAgaWYgKHZhbHVlID4gdGhpcy5tYXggfHwgdmFsdWUgPCB0aGlzLm1pbikge1xuICAgICAgICAgICAgcmV0dXJuO1xuICAgICAgICB9XG4gICAgICAgIHRoaXMuaW5wdXRDaGFuZ2UuZW1pdCh2YWx1ZSk7XG4gICAgfVxuXG4gICAgcHJpdmF0ZSBvblZhbHVlSW5wdXRNb3VzZVdoZWVsKCBldmVudDogYW55ICk6IHZvaWQge1xuICAgICAgICBldmVudCA9IGV2ZW50IHx8IHdpbmRvdy5ldmVudDtcbiAgICAgICAgY29uc3QgZGVsdGEgPSBldmVudC53aGVlbERlbHRhIHx8IC1ldmVudC5kZWx0YVkgfHwgLWV2ZW50LmRldGFpbDtcblxuICAgICAgICBpZiAoZGVsdGEgPiAwKSB7XG4gICAgICAgICAgaWYgKCF0aGlzLnVwQnRuRGlzYWJsZWQpIHtcbiAgICAgICAgICAgIHRoaXMudXBCdG5DbGlja2VkKCk7XG4gICAgICAgICAgfVxuICAgICAgICB9IGVsc2UgaWYgKGRlbHRhIDwgMCkge1xuICAgICAgICAgIGlmICghdGhpcy5kb3duQnRuRGlzYWJsZWQpIHtcbiAgICAgICAgICAgIHRoaXMuZG93bkJ0bkNsaWNrZWQoKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cblxuICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCA/IGV2ZW50LnByZXZlbnREZWZhdWx0KCkgOiAoZXZlbnQucmV0dXJuVmFsdWUgPSBmYWxzZSk7XG4gICAgfVxuXG4gICAgcHJpdmF0ZSBiaW5kVmFsdWVJbnB1dE1vdXNlV2hlZWwoKTogdm9pZCB7XG4gICAgICAgIHRoaXMudmFsdWVJbnB1dC5uYXRpdmVFbGVtZW50LmFkZEV2ZW50TGlzdGVuZXIoXG4gICAgICAgICAgICAnb253aGVlbCcgaW4gZG9jdW1lbnQgPyAnd2hlZWwnIDogJ21vdXNld2hlZWwnLFxuICAgICAgICAgICAgdGhpcy5vblZhbHVlSW5wdXRNb3VzZVdoZWVsQmluZCk7XG4gICAgfVxuXG4gICAgcHJpdmF0ZSB1bmJpbmRWYWx1ZUlucHV0TW91c2VXaGVlbCgpOiB2b2lkIHtcbiAgICAgICAgdGhpcy52YWx1ZUlucHV0Lm5hdGl2ZUVsZW1lbnQucmVtb3ZlRXZlbnRMaXN0ZW5lcihcbiAgICAgICAgICAgICdvbndoZWVsJyBpbiBkb2N1bWVudCA/ICd3aGVlbCcgOiAnbW91c2V3aGVlbCcsXG4gICAgICAgICAgICB0aGlzLm9uVmFsdWVJbnB1dE1vdXNlV2hlZWxCaW5kKTtcbiAgICB9XG59XG4iLCI8ZGl2ICpuZ0lmPVwic2hvd0RpdmlkZXJcIiBjbGFzcz1cIm93bC1kdC10aW1lci1kaXZpZGVyXCIgYXJpYS1oaWRkZW49XCJ0cnVlXCI+PC9kaXY+XG48YnV0dG9uIGNsYXNzPVwib3dsLWR0LWNvbnRyb2wtYnV0dG9uIG93bC1kdC1jb250cm9sLWFycm93LWJ1dHRvblwiXG4gICAgICAgIHR5cGU9XCJidXR0b25cIiB0YWJpbmRleD1cIi0xXCJcbiAgICAgICAgW2Rpc2FibGVkXT1cInVwQnRuRGlzYWJsZWRcIlxuICAgICAgICBbYXR0ci5hcmlhLWxhYmVsXT1cInVwQnRuQXJpYUxhYmVsXCJcbiAgICAgICAgKGNsaWNrKT1cInVwQnRuQ2xpY2tlZCgpXCI+XG4gICAgPHNwYW4gY2xhc3M9XCJvd2wtZHQtY29udHJvbC1idXR0b24tY29udGVudFwiIHRhYmluZGV4PVwiLTFcIj5cbiAgICAgICAgPCEtLSA8ZWRpdG9yLWZvbGQgZGVzYz1cIlNWRyBBcnJvdyBVcFwiPiAtLT5cbiAgICA8c3ZnIHhtbG5zPVwiaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmdcIiB4bWxuczp4bGluaz1cImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmtcIlxuICAgICAgICAgICAgICAgICB2ZXJzaW9uPVwiMS4xXCIgeD1cIjBweFwiIHk9XCIwcHhcIiB2aWV3Qm94PVwiMCAwIDQ1MS44NDcgNDUxLjg0NlwiXG4gICAgICAgICAgICAgICAgIHN0eWxlPVwiZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0NTEuODQ3IDQ1MS44NDY7XCIgeG1sOnNwYWNlPVwicHJlc2VydmVcIlxuICAgICAgICAgICAgICAgICB3aWR0aD1cIjEwMCVcIiBoZWlnaHQ9XCIxMDAlXCI+XG4gICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9XCJNMjQ4LjI5MiwxMDYuNDA2bDE5NC4yODEsMTk0LjI5YzEyLjM2NSwxMi4zNTksMTIuMzY1LDMyLjM5MSwwLDQ0Ljc0NGMtMTIuMzU0LDEyLjM1NC0zMi4zOTEsMTIuMzU0LTQ0Ljc0NCwwXG4gICAgICAgICAgICAgICAgICAgICAgICBMMjI1LjkyMywxNzMuNTI5TDU0LjAxOCwzNDUuNDRjLTEyLjM2LDEyLjM1NC0zMi4zOTUsMTIuMzU0LTQ0Ljc0OCwwYy0xMi4zNTktMTIuMzU0LTEyLjM1OS0zMi4zOTEsMC00NC43NUwyMDMuNTU0LDEwNi40XG4gICAgICAgICAgICAgICAgICAgICAgICBjNi4xOC02LjE3NCwxNC4yNzEtOS4yNTksMjIuMzY5LTkuMjU5QzIzNC4wMTgsOTcuMTQxLDI0Mi4xMTUsMTAwLjIzMiwyNDguMjkyLDEwNi40MDZ6XCIvPlxuICAgICAgICAgICAgICAgIDwvc3ZnPlxuICAgICAgICA8IS0tIDwvZWRpdG9yLWZvbGQ+IC0tPlxuICAgIDwvc3Bhbj5cbjwvYnV0dG9uPlxuPGxhYmVsIGNsYXNzPVwib3dsLWR0LXRpbWVyLWNvbnRlbnRcIj5cbiAgICA8aW5wdXQgY2xhc3M9XCJvd2wtZHQtdGltZXItaW5wdXRcIiBtYXhsZW5ndGg9XCIyXCJcbiAgICAgICAgICAgW3ZhbHVlXT1cImRpc3BsYXlWYWx1ZVwiXG4gICAgICAgICAgIChrZXlkb3duLmFycm93dXApPVwiIXVwQnRuRGlzYWJsZWQgJiYgdXBCdG5DbGlja2VkKClcIlxuICAgICAgICAgICAoa2V5ZG93bi5hcnJvd2Rvd24pPVwiIWRvd25CdG5EaXNhYmxlZCAmJiBkb3duQnRuQ2xpY2tlZCgpXCJcbiAgICAgICAgICAgKGlucHV0KT1cImhhbmRsZUlucHV0Q2hhbmdlKHZhbHVlSW5wdXQudmFsdWUpXCJcbiAgICAgICAgICAgKGZvY3VzaW4pPVwiZm9jdXNJbigpXCJcbiAgICAgICAgICAgKGZvY3Vzb3V0KT1cImZvY3VzT3V0KHZhbHVlSW5wdXQudmFsdWUpXCJcbiAgICAgICAgICAgI3ZhbHVlSW5wdXQ+XG4gICAgPHNwYW4gY2xhc3M9XCJvd2wtaGlkZGVuLWFjY2Vzc2libGVcIj57e2lucHV0TGFiZWx9fTwvc3Bhbj5cbjwvbGFiZWw+XG48YnV0dG9uIGNsYXNzPVwib3dsLWR0LWNvbnRyb2wtYnV0dG9uIG93bC1kdC1jb250cm9sLWFycm93LWJ1dHRvblwiXG4gICAgICAgIHR5cGU9XCJidXR0b25cIiB0YWJpbmRleD1cIi0xXCJcbiAgICAgICAgW2Rpc2FibGVkXT1cImRvd25CdG5EaXNhYmxlZFwiXG4gICAgICAgIFthdHRyLmFyaWEtbGFiZWxdPVwiZG93bkJ0bkFyaWFMYWJlbFwiXG4gICAgICAgIChjbGljayk9XCJkb3duQnRuQ2xpY2tlZCgpXCI+XG4gICAgPHNwYW4gY2xhc3M9XCJvd2wtZHQtY29udHJvbC1idXR0b24tY29udGVudFwiIHRhYmluZGV4PVwiLTFcIj5cbiAgICAgICAgPCEtLSA8ZWRpdG9yLWZvbGQgZGVzYz1cIlNWRyBBcnJvdyBEb3duXCI+IC0tPlxuICAgIDxzdmcgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiIHhtbG5zOnhsaW5rPVwiaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGlua1wiXG4gICAgICAgICAgICAgICAgIHZlcnNpb249XCIxLjFcIiB4PVwiMHB4XCIgeT1cIjBweFwiIHZpZXdCb3g9XCIwIDAgNDUxLjg0NyA0NTEuODQ2XCJcbiAgICAgICAgICAgICAgICAgc3R5bGU9XCJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ1MS44NDcgNDUxLjg0NjtcIiB4bWw6c3BhY2U9XCJwcmVzZXJ2ZVwiXG4gICAgICAgICAgICAgICAgIHdpZHRoPVwiMTAwJVwiIGhlaWdodD1cIjEwMCVcIj5cbiAgICAgICAgICAgICAgICAgICAgPHBhdGggZD1cIk0yMjUuOTIzLDM1NC43MDZjLTguMDk4LDAtMTYuMTk1LTMuMDkyLTIyLjM2OS05LjI2M0w5LjI3LDE1MS4xNTdjLTEyLjM1OS0xMi4zNTktMTIuMzU5LTMyLjM5NywwLTQ0Ljc1MVxuICAgICAgICAgICAgICAgICAgICAgICAgYzEyLjM1NC0xMi4zNTQsMzIuMzg4LTEyLjM1NCw0NC43NDgsMGwxNzEuOTA1LDE3MS45MTVsMTcxLjkwNi0xNzEuOTA5YzEyLjM1OS0xMi4zNTQsMzIuMzkxLTEyLjM1NCw0NC43NDQsMFxuICAgICAgICAgICAgICAgICAgICAgICAgYzEyLjM2NSwxMi4zNTQsMTIuMzY1LDMyLjM5MiwwLDQ0Ljc1MUwyNDguMjkyLDM0NS40NDlDMjQyLjExNSwzNTEuNjIxLDIzNC4wMTgsMzU0LjcwNiwyMjUuOTIzLDM1NC43MDZ6XCIvPlxuICAgICAgICAgICAgICAgIDwvc3ZnPlxuICAgICAgICA8IS0tIDwvZWRpdG9yLWZvbGQ+IC0tPlxuICAgIDwvc3Bhbj5cbjwvYnV0dG9uPlxuIl19

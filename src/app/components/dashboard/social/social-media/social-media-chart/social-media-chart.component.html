@@ -1,0 +1,22 @@
+<div class="card social-widget widget-hover">
+   <div class="card-body">
+     <div class="d-flex align-items-center justify-content-between">
+       <div class="d-flex align-items-center gap-2">
+         <div class="social-icons"><img src="../../../../../../assets/images/user/8.jpg" alt="{{data.socialMediaName}}" /></div>
+         <span>{{data.socialMediaName}}</span>
+       </div>
+       <span class="font-success f-12 d-xxl-block d-xl-none">{{data.growth}}</span>
+     </div>
+     <div class="social-content">
+       <div>
+         <h5 class="mb-1">{{data.followers}}</h5>
+         <span class="f-light">Followers</span>
+       </div>
+       <div class="social-chart">
+         <div id="radial-facebook">
+            <apx-chart [series]="data.series" [chart]="data.chart" [plotOptions]="data.plotOptions" [colors]="data.colors" [stroke]="data.stroke" [responsive]="data.responsive"></apx-chart>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>

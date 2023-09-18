@@ -1,0 +1,63 @@
+.loader--text {
+  top: 200%;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.loader--text:after {
+  content: "Loading";
+  font-weight: bold;
+  animation-name: loading-text;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes loader {
+  15% {
+    transform: translateX(0);
+  }
+  45% {
+    transform: translateX(230px);
+  }
+  65% {
+    transform: translateX(230px);
+  }
+  95% {
+    transform: translateX(0);
+  }
+}
+@keyframes loading-text {
+  0% {
+    content: "Loading";
+  }
+  25% {
+    content: "Loading.";
+  }
+  50% {
+    content: "Loading..";
+  }
+  75% {
+    content: "Loading...";
+  }
+}
+
+button {
+  background-color: #e98b11 !important;
+  color: white !important;
+}
+button:hover {
+  background-color: #51515b !important;
+  box-shadow: rgba(172, 132, 1, 0.991) 0px 2px 10px;
+  span{
+    color:white;
+  }
+}
+.login-card {
+  background: rgba(233 139 17) !important; /* Utilisez rgba pour définir la couleur de fond avec une opacité de 50% */
+  background-image: url("../../../assets/images/login/banner-05.png") !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+.monBlog{
+  background-color: #e98b11;
+}

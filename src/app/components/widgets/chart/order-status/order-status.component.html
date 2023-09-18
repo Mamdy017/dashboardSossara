@@ -1,0 +1,32 @@
+<div class="card">
+   <div class="card-header">
+     <div class="header-top">
+       <h5>Order Status</h5>
+       <div class="card-header-right-icon">
+         <div class="dropdown">
+           <button class="btn dropdown-toggle" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown">Today</button>
+           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"><a class="dropdown-item" href="#">Today</a><a class="dropdown-item" href="#">Tomorrow</a><a class="dropdown-item" href="#">Yesterday</a></div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div class="card-body">
+     <div class="chart-container progress-chart">
+       <div id="progress1">
+         <apx-chart [chart]="progress.chart" [plotOptions]="progress.plotOptions" [colors]="progress.colors" [stroke]="progress.stroke" [fill]="progress.fill" [series]="progress.series" [title]="progress.title" [subtitle]="progress.subtitle" [tooltip]="progress.tooltip" [xaxis]="progress.xaxis" [yaxis]="progress.yaxis" [responsive]="progress.responsive"></apx-chart>
+       </div>
+       <div id="progress2">
+         <apx-chart [chart]="progress1.chart" [plotOptions]="progress1.plotOptions" [colors]="progress1.colors" [stroke]="progress1.stroke" [fill]="progress1.fill" [series]="progress1.series" [title]="progress1.title" [subtitle]="progress1.subtitle" [tooltip]="progress1.tooltip" [xaxis]="progress1.xaxis" [yaxis]="progress1.yaxis" [responsive]="progress1.responsive"></apx-chart>
+       </div>
+       <div id="progress3">
+         <apx-chart [chart]="progress2.chart" [plotOptions]="progress2.plotOptions" [colors]="progress2.colors" [stroke]="progress2.stroke" [fill]="progress2.fill" [series]="progress2.series" [title]="progress2.title" [subtitle]="progress2.subtitle" [tooltip]="progress2.tooltip" [xaxis]="progress2.xaxis" [yaxis]="progress2.yaxis" [responsive]="progress2.responsive"></apx-chart>
+       </div>
+       <div id="progress4">
+         <apx-chart [chart]="progress3.chart" [plotOptions]="progress3.plotOptions" [colors]="progress3.colors" [stroke]="progress3.stroke" [fill]="progress3.fill" [series]="progress3.series" [title]="progress3.title" [subtitle]="progress3.subtitle" [tooltip]="progress3.tooltip" [xaxis]="progress3.xaxis" [yaxis]="progress3.yaxis" [responsive]="progress3.responsive"></apx-chart>
+       </div>
+       <div id="progress5">
+         <apx-chart [chart]="progress4.chart" [plotOptions]="progress4.plotOptions" [colors]="progress4.colors" [stroke]="progress4.stroke" [fill]="progress4.fill" [series]="progress4.series" [title]="progress4.title" [subtitle]="progress4.subtitle" [tooltip]="progress4.tooltip" [xaxis]="progress4.xaxis" [yaxis]="progress4.yaxis" [responsive]="progress4.responsive"></apx-chart>
+       </div>
+     </div>
+   </div>
+ </div>

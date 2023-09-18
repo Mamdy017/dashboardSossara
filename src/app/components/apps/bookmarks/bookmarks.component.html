@@ -1,0 +1,152 @@
+<app-breadcrumb
+  [title]="'Bookmark'"
+  [items]="['Apps']"
+  [active_item]="'Bookmark'"
+></app-breadcrumb>
+<!-- Container-fluid starts-->
+<div class="container-fluid py-4">
+  <div class="email-wrap bookmark-wrap">
+    <div class="row">
+      <div class="col-xl-12 col-md-12 box-col-12">
+        <div class="email-right-aside bookmark-tabcontent">
+          <div class="card email-body radius-left">
+            <div class="ps-0">
+              <div class="tab-content">
+                <div
+                  class="tab-pane fade active show"
+                  id="pills-created"
+                  role="tabpanel"
+                  aria-labelledby="pills-created-tab"
+                >
+                  <div class="card mb-0">
+                    <div class="card-header d-flex">
+                      <!-- <h6 class="mb-0">Created by me</h6> -->
+                      <button
+                        class="btn-primary btn monButon btn-mail"
+                        type="button"
+                        (click)="AddBookmark.openModal()"
+                      >
+                        <i class="me-2" data-feather="plus"></i>Nouveau blog
+                      </button>
+                      <h1>La liste des blogs </h1>
+                    </div>
+                    <div class="card-body">
+                      <div
+                        class="details-bookmark text-center"
+                        [class.list-bookmark]="listBookmark"
+                      >
+                        <div class="row" id="">
+                          <div
+                            class="col-xxl-3 col-md-4 col-ed-4"
+                            *ngFor="let blogs of tableItem$ | async"
+                          >
+                            <div class="card card-with-border o-hidden">
+                              <div class="details-website">
+                                <img
+                                  class="img-fluid"
+                                  src="{{ generateImageUrl(blogs?.photo) }}"
+                                  alt=""
+                                />
+                                <!-- <div class="favourite-icon favourite_0"><a href="javascript:void(0)"><i class="fa fa-star"></i></a></div> -->
+                                <div class="desciption-data">
+                                  <div class="title-bookmark">
+                                    <h6 class="title_0">{{ blogs?.titre }}</h6>
+                                    <div class="" style="display: flex">
+                                      <p
+                                        class="weburl_0"
+                                        *ngIf="
+                                          isDescriptionCollapsed[blogs?.id]
+                                        "
+                                      >
+                                        {{ blogs.description?.slice(0, 40) }}...
+                                      </p>
+
+                                      <p
+                                        class="weburl_0"
+                                        *ngIf="
+                                          !isDescriptionCollapsed[blogs?.id]
+                                        "
+                                      >
+                                        {{ blogs.description }}
+                                      </p>
+
+                                      <a
+                                        href="javascript:void(0)"
+                                        (click)="toggleDescription(blogs?.id)"
+                                      >
+                                        <i
+                                          class="middle fa fa-angle-down"
+                                          style="font-size: 1em"
+                                          [ngClass]="{
+                                            rotate180:
+                                              !isDescriptionCollapsed[blogs?.id]
+                                          }"
+                                        ></i>
+                                      </a>
+                                      <!-- <p class="weburl_0">{{ blogs.description }}</p> -->
+                                    </div>
+                                    <!-- <div class="hover-block" >
+                                    </div> -->
+                                    <ul class="py-2">
+                                      <li>
+                                        <i
+                                          data-bs-toggle="modal"
+                                          (click)="
+                                            EditBookmark.openModal(blogs?.id)
+                                          "
+                                          class="fa fa-edit"
+                                        ></i>
+                                        &nbsp;<i
+                                          style="color: red !important"
+                                          (click)="supprimer(blogs?.id)"
+                                          class="fa fa-trash"
+                                        ></i>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="d-flex justify-content-between mt-3 mb-4">
+                            <select
+                              class="form-select"
+                              style="width: auto; color: #2f2f3b"
+                              name="pageSize"
+                              [(ngModel)]="service.pageSize"
+                            >
+                              <option [ngValue]="6">Afficher 6 éléments</option>
+                              <option [ngValue]="8">Afficher 8 éléments</option>
+                              <option [ngValue]="12">
+                                Afficher 12 éléments
+                              </option>
+
+                              <option [ngValue]="service.total$ | async">
+                                Tout afficher
+                              </option>
+                            </select>
+                            <ngb-pagination
+                              class="ms-3"
+                              [collectionSize]="(total$ | async)!"
+                              [(page)]="service.page"
+                              [pageSize]="service.pageSize"
+                            >
+                            </ngb-pagination>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-add-bookmark #addbookmark></app-add-bookmark>
+  <app-edit-bookmark #editbookmark></app-edit-bookmark>
+  <app-create-tag #createTag></app-create-tag>
+  <!-- Container-fluid Ends-->
+</div>

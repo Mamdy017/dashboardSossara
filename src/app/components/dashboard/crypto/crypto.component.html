@@ -1,0 +1,39 @@
+<app-breadcrumb [title]="'Crypto'" [items]="['Dashboard']" [active_item]="'Crypto'"></app-breadcrumb>
+<div class="container-fluid py-4">
+  <div class="row">
+
+    <div class="col-xxl-3 col-xl-12 box-col-4">
+      <app-crypto-left-content></app-crypto-left-content>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="col-xxl-6 col-xl-12 box-col-8e">
+          <app-monthly-history></app-monthly-history>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <!-- <div class="col-xxl-3 col-xl-12 box-col-4">
+          <div class="card crypto-main-card">
+            <div class="card-body">
+              <div class="deposit-wrap">
+                <div>
+                  <h5>Cryptocurrency just got even better.</h5>
+                  <p>Lorem Ipsum is simply dummy text</p>
+                  <button class="btn btn-white f-w-500">Deposit Now</button>
+                </div>
+                <img src="assets/images/dashboard-4/ECOBANK.jpg" alt="crypto" />
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="col-sm-12"> 
+          <app-buy-coins></app-buy-coins>
+        </div>
+      </div>
+    </div>
+  
+    <!-- <div class="col-xxl-3 box-col-12">
+      <app-crypto-right-content></app-crypto-right-content>
+    </div> -->
+  </div>
+</div>

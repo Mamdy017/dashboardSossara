@@ -1,0 +1,20 @@
+<div class="card">
+   <div class="card-header card-no-border">
+     <div class="header-top">
+       <h5 class="m-0">Instagram Subscribers<span class="f-14 f-w-500 ms-1 f-light">(75% activity growth)</span></h5>
+       <div class="card-header-right-icon">
+         <div class="dropdown icon-dropdown">
+           <button class="btn dropdown-toggle" type="button" (click)="toggle()"><i class="icon-more-alt"></i></button>
+           <div class="dropdown-menu dropdown-menu-end" [class.show]="show"><a class="dropdown-item" href="#">Today</a><a class="dropdown-item" href="#">Tomorrow</a><a class="dropdown-item" href="#">Yesterday</a></div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div class="card-body pt-0">
+     <div class="subscriber-chart-container">
+       <div id="subscriber-chart">
+         <apx-chart [series]="subscriberChart.series" [chart]="subscriberChart.chart" [grid]="subscriberChart.grid" [colors]="subscriberChart.colors" [stroke]="subscriberChart.stroke" [markers]="subscriberChart.markers" [tooltip]="subscriberChart.tooltip" [xaxis]="subscriberChart.xaxis" [fill]="subscriberChart.fill" [yaxis]="subscriberChart.yaxis" [legend]="subscriberChart.legend" [responsive]="subscriberChart.responsive"></apx-chart>
+       </div>
+     </div>
+   </div>
+ </div>

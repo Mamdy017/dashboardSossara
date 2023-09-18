@@ -1,0 +1,162 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid py-2">
+  <div class="row">
+    
+    <div class="card">
+      <div class="card-header card-no-border">
+        <div class="header-top">
+          <h5 class="m-0">All Campaigns</h5>
+          <div class="card-header-right-icon">
+            <div class="dropdown icon-dropdown">
+              <button
+                class="btn dropdown-toggle"
+                type="button"
+                (click)="toggle()"
+              >
+                <i class="icon-more-alt"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end" [class.show]="show">
+                <a class="dropdown-item" href="#">Bien vendu</a
+                ><a class="dropdown-item" href="#">Bien louer</a
+                ><a class="dropdown-item" href="#">Bien disponible</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body pt-0 campaign-table">
+        <h1>les biens disponible</h1>
+        <div class="recent-table table-responsive currency-table">
+          <div class=" row mb-2">
+            <!-- Ajoutez le module FormsModule dans votre module Angular -->
+            <div class="col-md-6">
+              <select class="form-control" style="width: 70%; margin-right: auto;" [(ngModel)]="searchText">
+                <option value="">Tout</option>
+                <!-- Option par défaut "All" -->
+                <option  value="A vendre">
+               A vendre
+                </option>
+                <option  value="A louer">
+                  A vendre
+                   </option>
+                
+              </select>
+            </div>
+            <div class="col-md-6">
+              <!-- <div class="form-control" style="width: 70%;"> -->
+
+                <div class="input-group form-control" style="width: 70%; height: 90%; margin-left: auto;">
+                  <div class="input-group-prepend" style="border: none;">
+                    <span class="input-group-text" style="border: none;"><i class="fa fa-search"></i></span>
+                  </div>
+                  <input
+                    class="form-control" style="border: none;"
+                    type="text"
+                    [(ngModel)]="searchText"
+                    autocomplete="off"
+                    placeholder="Chercher un bien ..."
+                  />
+                </div>
+                
+              <!-- </div> -->
+            </div>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="f-light col" >N°</th>
+                <th class="f-light">Nom</th>
+                <!-- <th class="f-light">Pièce</th>
+                <th class="f-light">Chambre</th> -->
+                <th class="f-light">Surface</th>
+                <th class="f-light">Prix</th>
+                <th class="f-light">Description</th>
+                <th class="f-light" colspan="2">Action</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr
+                *ngFor="
+                  let biens of tableItem$ | async | filter : searchText;
+                  let i = index
+                "
+              >
+                <td class="border-icon {{ biens.colorClass }}">
+                  <div>
+                    <div class="social-circle">{{ i + 1 }}</div>
+                  </div>
+                </td>
+                <td>{{ biens?.nom }}</td>
+                <!-- <td>{{ biens?.nb_piece }}</td> -->
+                <!-- <td>
+                  <div class="change-currency">
+                   
+                    {{ biens.chambre }}
+                  </div>
+                </td> -->
+                <td>{{ biens.surface }}</td>
+                <td>{{ biens.prix }}</td>
+                <td style="display: flex"><p *ngIf="isDescriptionCollapsed[biens?.id]">
+                  {{ biens.description?.slice(0, 20) }}...
+                </p>
+
+                <p *ngIf="!isDescriptionCollapsed[biens?.id]">
+                  {{ biens.description }}
+                </p>
+
+                <a
+                  href="javascript:void(0)"
+                  (click)="toggleDescription(biens?.id)"
+                >
+                  <i
+                    class="middle fa fa-angle-down"
+                    [ngClass]="{
+                      rotate180: !isDescriptionCollapsed[biens?.id]
+                    }"
+                  ></i>
+                </a></td>
+
+                <td>
+                  <button class="plus-btn">+</button>
+                </td>
+                <td>
+                  <button
+                    class="btn badge-light-primary">
+                  <i class="icon-trash"></i>
+                  </button>
+                </td>
+              
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-between mt-3 mb-2">
+            <select
+              class="form-select"
+              style="width: auto"
+              name="pageSize"
+              [(ngModel)]="productService.pageSize"
+            >
+              <option [ngValue]="6">Afficher 6 éléments</option>
+              <option [ngValue]="8">Afficher 8 éléments</option>
+              <option [ngValue]="12">Afficher 12 éléments</option>
+
+              <option [ngValue]="productService.total$ | async">
+                Tout afficher
+              </option>
+            </select>
+            <ngb-pagination
+              class="ms-3"
+              [collectionSize]="(total$ | async)!"
+              [(page)]="productService.page"
+              [pageSize]="productService.pageSize"
+            >
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Container-fluid Ends-->

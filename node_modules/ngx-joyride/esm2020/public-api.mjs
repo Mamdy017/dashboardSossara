@@ -1,0 +1,5 @@
+/*
+ * Public API Surface of ngx-joyride
+ */
+export * from './lib/joyride';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3Byb2plY3RzL25neC1qb3lyaWRlL3NyYy9wdWJsaWMtYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBRUgsY0FBYyxlQUFlLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIG5neC1qb3lyaWRlXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9saWIvam95cmlkZSc7XG4iXX0=

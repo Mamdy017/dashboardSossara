@@ -1,0 +1,85 @@
+<app-breadcrumb [title]="'Ngselect'" [items]="['Forms', 'Form Widgets']" [active_item]="'Ngselect'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="select2-drpdwn">
+    <div class="row">
+      <!-- Default Textbox start-->
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">NG SELECT</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-2">
+              <div class="col-form-label">Default Placeholder</div>
+              <ng-select [items]="defaultBindingsList" placeholder="Select"
+                class="js-example-placeholder-multiple" [(ngModel)]="selectedCity"></ng-select>
+            </div>
+            <div class="mb-2">
+              <div class="col-form-label">Single select</div>
+              <ng-select [items]="defaultBindingsList" class="js-example-basic-single"
+                [(ngModel)]="selectgroupby" groupBy="job" placeholder="Single Select"></ng-select>
+            </div>
+            <div class="mb-2">
+              <div class="col-form-label">Select2 multi select</div>
+              <ng-select [items]="defaultBindingsList" class="js-example-basic-multiple" placeholder="Select"
+                [(ngModel)]="multipleSelectedCity" [multiple]="true"></ng-select>
+            </div>
+            <div class="mb-2">
+              <div class="col-form-label" id="rtl-support">RTL support</div>
+              <ng-select [items]="defaultBindingsList" class="js-example-basic-multiple rtl" placeholder="Select"
+                [(ngModel)]="rtl" [multiple]="true" dir="rtl"></ng-select>
+            </div>
+            <div class="mb-2">
+              <div class="col-form-label">Limiting The Number Of Selections</div>
+              <ng-select [items]="defaultBindingsList" class="js-example-basic-multiple-limit"
+                placeholder="Select" [(ngModel)]="multipleSelectedCity1" [multiple]="true" [maxSelectedItems]="3">
+              </ng-select>
+            </div>
+
+            <div>
+              <div class="col-form-label">Enable-Disable</div>
+              <ng-select [items]="defaultBindingsList" class="js-example-disabled" placeholder="Select"
+                [(ngModel)]="selectedCity1" [disabled]="disable"></ng-select>
+              <hr>
+              <button class="btn btn-primary" (click)="disable = false">Enable</button>
+              <button class="btn btn-secondary ms-1" (click)="disable = true">Disable</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Default Textbox end-->
+      <!-- Input Groups start-->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Outline Color Variant</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-2" *ngFor="let item of dropdowns; let i = index ">
+              <div class="col-form-label">{{item.buttonColor | titlecase}} Select</div>
+              <ng-select [items]="item.defaultBindingsList" placeholder="Select"
+                class="form-control form-control-{{item.buttonColor}} btn-square ng-select-outline" [(ngModel)]="selectedCitiesOuline[i]">
+              </ng-select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Full Colored Variant</h5>
+          </div>
+          <div class="card-body">
+            <div class="mb-2" *ngFor="let item of dropdowns; let i = index ">
+              <div class="col-form-label">{{item.buttonColor | titlecase}} Select</div>
+              <ng-select [items]="item.defaultBindingsList" placeholder="Select"
+                class="form-control form-control-{{item.buttonColor}} btn-square ng-select-bg" [(ngModel)]="selectedCities[i]">
+              </ng-select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Input Groups end-->
+    </div>
+  </div>
+</div>

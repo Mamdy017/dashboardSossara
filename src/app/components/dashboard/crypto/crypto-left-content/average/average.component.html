@@ -1,0 +1,17 @@
+<div class="card widget-hover">
+  <div class="card-body radial-progress-card">
+    <div>
+      <h6 class="mb-0">{{ data.averageTitle }}</h6>
+      <div class="sale-details">
+        <h5 class="font-{{ data.cardColor }} mb-0">{{ data.average }}</h5>
+        <!-- <span class="f-12 f-light f-w-500"><i data-feather="arrow-up"></i>+{{ data.parsonage }}%</span> -->
+      </div>
+      <p class="f-light">{{ data.desc }}</p>
+    </div>
+    <div class="radial-chart-wrap">
+      <div id="radial-chart">
+        <apx-chart [series]="data.series" [chart]="data.chart" [plotOptions]="data.plotOptions" [colors]="data.colors" [stroke]="data.stroke" [responsive]="data.responsive"></apx-chart>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<app-breadcrumb [title]="'Chartjs'" [items]="['Chart']" [active_item]="'Chartjs'"></app-breadcrumb>
+<!-- Container-fluid starts -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-6 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Bar Chart</h5>
+                </div>
+                <div class="card-body chart-block">
+                    <canvas baseChart class="chart" [datasets]="barChartData" [labels]="barChartLabels"
+                        [options]="barChartOptions"  [legend]="barChartLegend"
+                        [type]="barChartType" (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Line Graph</h5>
+                </div>
+                <div class="card-body chart-block">
+                    <canvas baseChart class="chart" [datasets]="lineGraphData" [labels]="lineGraphLabels"
+                        [options]="lineGraphOptions"  [legend]="lineGraphLegend"
+                        [type]="lineGraphType" (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Radar Graph</h5>
+                </div>
+                <div class="card-body chart-block" >
+                    <canvas baseChart class="chart" [datasets]="radarGraphData" [labels]="radarGraphLabels"
+                        [options]="radarGraphOptions"  [legend]="radarGraphLegend"
+                        [type]="radarGraphType" (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Line Chart</h5>
+                </div>
+                <div class="card-body chart-block">
+                    <canvas baseChart class="chart" [datasets]="lineChartData" [labels]="lineChartLabels"
+                        [options]="lineChartOptions" [legend]="lineChartLegend"
+                        [type]="lineChartType" (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends -->

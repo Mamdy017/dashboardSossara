@@ -1,0 +1,328 @@
+<app-breadcrumb [title]="'TouchSpin'" [items]="['Forms', 'Form Widgets']" [active_item]="'TouchSpin'"></app-breadcrumb>
+<div class="container-fluid">
+  <!-- Bootstrap TouchSpin Spinners start-->
+  <div class="bootstrap-touchspin">
+    <div class="row">
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Default Touchspin</h5><span>Add <code>.touchspin</code> class to input to add
+              touchspin input group.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <button class="btn btn-primary btn-square bootstrap-touchspin-down" type="button" (click)=decrement(0)>
+                  <i class="fa fa-minus"></i>
+                </button>
+                <input class="touchspin form-control" type="text" value={{counter[0]}}>
+                <div class="input-group-append ms-0">
+                  <button class="btn btn-primary btn-square bootstrap-touchspin-up" type="button" (click)=increment(0)>
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">vertical Touchspin</h5><span>Add <code>.touchspin-vertical</code> class for vertical
+              touchspin input group.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="touchspin-vertical-tab">
+                <div class="input-group bootstrap-touchspin">
+                  <input class="touchspin-vertical form-control" type="text" value={{counter[1]}}>
+                  <span class="input-group-btn-vertical">
+                    <button class="btn btn-primary btn-square bootstrap-touchspin-up" type="button"
+                      (click)=increment(1)>
+                      <i class="fa fa-angle-up"></i></button>
+                    <button class="btn btn-primary btn-square bootstrap-touchspin-down" type="button"
+                      (click)=decrement(1)>
+                      <i class="fa fa-angle-down"></i></button>
+                  </span>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Touchspin with Postfix</h5><span>Add <code>data-bts-postfix="POSTFIX_VALUE"</code>
+              attribute to input to add postfix to touchspin input group.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)=decrement(2)><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin form-control" type="text" value={{counter[2]}} data-bts-postfix="%">
+                <div class="input-group-append"><span class="input-group-text bootstrap-touchspin-postfix">%</span>
+                </div>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)=increment(2)><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Touchspin with Prefix</h5><span>Add <code>data-bts-prefix="PREFIX_VALUE"</code>
+              attribute to input to add prefix to touchspin input group.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(3)"><i class="fa fa-minus"></i></button></div>
+                <div class="input-group-prepend"><span class="input-group-text bootstrap-touchspin-prefix">#</span>
+                </div><input class="touchspin form-control" type="text" value={{counter[3]}} data-bts-prefix="#">
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(3)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Min Max Value of Touchspin</h5><span>Use
+              <code>data-bts-min="VALUE" data-bts-max="VALUE"</code> attribute to input to set min and max value of
+              touchspin input.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(4)"><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin form-control" type="text" value={{counter[4]}}>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(4)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Touchspin with initial Value</h5><span>Add <code>data-bts-init-val="VALUE"</code>
+              attribute attribute to set initial value for input group.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(5)"><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin form-control" type="text" value={{counter[5]}}>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(5)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Touchspin steps</h5><span>Add <code>data-bts-step="VALUE"</code> attribute for
+              increament and decrement steps to touchspin input group.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(6)"><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin form-control" type="text" value={{counter[6]}}>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(6)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Decimal Value of Touchspin</h5><span>Use <code>data-bts-decimal="VALUE"</code>
+              attribute to use decimal value of touchspin input.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(7)"><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin form-control" type="text" value={{counter[7]}}>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(7)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Change Button Class to link</h5><span>Add
+              <code>data-bts-button-down-class &amp; data-bts-button-up-class</code> attribute to change button
+              Class.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(8)"><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin form-control" type="text" value={{counter[8]}}>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(8)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Touchspin With Icon</h5><span>Add icon class in <code>data-bts-postfix</code>
+              attribute to icon to postfix as well prefix.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(9)"><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin form-control" type="text" value={{counter[9]}}>
+                <div class="input-group-append"><span class="input-group-text bootstrap-touchspin-postfix"><i
+                      class="fa fa-check"></i></span></div>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(9)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Touchspin Icon Button</h5><span>Use
+              <code>data-bts-button-down-txt &amp; data-bts-button-up-txt</code> attribute to set touchspin icon
+              button.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(10)"><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin form-control" type="text" value={{counter[10]}}>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(10)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Touchspin With Dropdown</h5><span>Use
+              <code>data-bts-prefix &amp; data-bts-postfix</code> attribute to set Prefix and Postfix to touchspin input
+              with button.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(11)"><i class="fa fa-minus"></i></button></div>
+                <div class="input-group-prepend"><span class="input-group-text bootstrap-touchspin-prefix">Pre</span>
+                </div><input class="touchspin form-control" type="text" value={{counter[11]}}>
+                <div class="input-group-append"><span class="input-group-text bootstrap-touchspin-postfix">Post</span>
+                </div>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(11)"><i class="fa fa-plus"></i></button></div>
+                <div class="dropdown-basic">
+                  <div class="dropdown" ngbDropdown>
+                    <div class="btn-group mb-0 me-0">
+                      <button class="dropbtn btn-light txt-dark" type="button" ngbDropdownToggle>Action</button>
+                      <div ngbDropdownMenu>
+                        <div *ngFor="let content of contents">
+                          <button ngbDropdownItem>{{content}}</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Touchspin mousewheel Disable</h5><span>Add <code>.touchspin-stop-mousewheel</code>
+              class to diable mousewheel.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(12)"><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin-stop-mousewheel form-control" type="text" value={{counter[12]}}>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(12)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Small Horizontal Touchspin</h5><span>Add <code>.input-group-sm</code> class to
+              input-group.</span>
+          </div>
+          <div class="card-body">
+            <fieldset>
+              <div class="input-group input-group-sm bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(13)"><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin form-control" type="text" value={{counter[13]}}>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(13)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Large Horizontal Touchspin</h5>
+          </div>
+          <div class="card-body">
+            <p>Add <code>.input-group-lg</code> class to input-group.</p>
+            <fieldset>
+              <div class="input-group input-group-lg bootstrap-touchspin">
+                <div class="input-group-prepend"><button class="btn btn-primary btn-square bootstrap-touchspin-down"
+                    type="button" (click)="decrement(14)"><i class="fa fa-minus"></i></button></div>
+                <input class="touchspin form-control" type="text" value={{counter[14]}}>
+                <div class="input-group-append ms-0"><button class="btn btn-primary btn-square bootstrap-touchspin-up"
+                    type="button" (click)="increment(14)"><i class="fa fa-plus"></i></button></div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap TouchSpin Spinners End-->
+</div>

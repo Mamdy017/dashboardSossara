@@ -1,0 +1,30 @@
+img{
+    width: 917px !important;
+    height: 250px !important;
+}
+.monButon{
+    width: 20% !important; 
+    height: 20% !important; 
+    border-radius: 12px;
+}
+.monButon:hover{
+    background-color: #2F2F3B !important;
+    color: white !important;
+}
+ul{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    li{
+        margin-left: auto;
+        margin-right: auto;
+        i{
+            font-size: 2em !important;
+            color: #E98B11 !important;
+          
+            .fa-trash{
+                color: red !important;
+            }
+        }
+    }
+}

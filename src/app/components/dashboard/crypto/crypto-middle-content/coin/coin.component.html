@@ -1,0 +1,24 @@
+<div class="currency-widget {{data.colorClass}}">
+   <div class="d-flex">
+     <div class="currency-icon-widget"> 
+       <svg>
+         <use attr.xlink:href="assets/svg/icon-sprite.svg#{{data.icon}}"></use>
+       </svg>
+     </div>
+     <div> 
+       <h6>{{data.coinName}} <span class="f-light">{{data.tag}}</span></h6>
+     </div>
+   </div>
+   <div class="card"> 
+     <div class="card-body d-flex">
+       <div class="currency-chart-wrap">
+         <div id="currency-chart">
+            <apx-chart [series]="data.series" [chart]="data.chart" [grid]="data.grid" [colors]="data.colors" [stroke]="data.stroke" [labels]="data.labels" [markers]="data.markers" [xaxis]="data.xaxis" [yaxis]="data.yaxis" [legend]="data.legend" [tooltip]="data.tooltip" [responsive]="data.responsive"></apx-chart>
+         </div>
+       </div>
+       <div class="bg-light-{{data.colorClass}} text-center"> 
+         <h5 class="mb-0">${{data.price}}</h5><span class="f-12 f-w-500 font-{{data.colorClass}} "><i class="me-1" data-feather="trending-up"></i>+{{data.parsonage}}%</span>
+       </div>
+     </div>
+   </div>
+ </div>

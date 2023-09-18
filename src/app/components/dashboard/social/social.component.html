@@ -1,0 +1,32 @@
+<app-breadcrumb
+  [title]="'Social'"
+  [items]="['Dashboard']"
+  [active_item]="'Social'"
+></app-breadcrumb>
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-xxl-3 col-ed-4 col-xl-4 box-col-4">
+      <div class="row">
+        <div class="col-xl-12 col-md-6">
+          <app-social-user-profile></app-social-user-profile>
+        </div>
+        <div class="col-xl-12 col-md-6">
+          <app-mobile-application></app-mobile-application>
+        </div>
+      </div>
+    </div>
+    <div class="col-xxl-6 col-ed-8 col-xl-8 box-col-8e">
+      <app-social-media></app-social-media>
+    </div>
+    <div class="col-xl-3 col-ed-none d-xxl-block d-lg-none box-col-none">
+      <div class="row">
+        <div class="col-lg-12 col-sm-6">
+          <app-follower-gender></app-follower-gender>
+        </div>
+        <div class="col-lg-12 col-sm-6">
+          <app-campaign></app-campaign>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

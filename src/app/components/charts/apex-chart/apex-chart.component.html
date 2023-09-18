@@ -1,0 +1,192 @@
+<app-breadcrumb [title]="'Apex Chart'" [items]="['Chart']" [active_item]="'Apex Chart'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-xl-6 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Basic Area Chart </h5>
+        </div>
+        <div class="card-body">
+          <div id="basic-apex">
+            <apx-chart [series]="splineArea2.series" [chart]="splineArea2.chart" [xaxis]="splineArea2.xaxis"
+              [stroke]="splineArea2.stroke" [dataLabels]="splineArea2.dataLabels" [yaxis]="splineArea2.yaxis"
+              [labels]="splineArea2.labels" [legend]="splineArea2.legend" [colors]="splineArea2.colors"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Area Spaline Chart </h5>
+        </div>
+        <div class="card-body">
+          <div id="area-spaline">
+            <apx-chart [series]="splineArea1.series" [chart]="splineArea1.chart" [xaxis]="splineArea1.xaxis"
+              [stroke]="splineArea1.stroke" [tooltip]="splineArea1.tooltip" [dataLabels]="splineArea1.dataLabels"
+              [colors]="splineArea1.colors">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Bar chart</h5>
+        </div>
+        <div class="card-body">
+          <div id="basic-bar">
+            <apx-chart [series]="bar.series" [chart]="bar.chart" [dataLabels]="bar.dataLabels"
+              [plotOptions]="bar.plotOptions" [xaxis]="bar.xaxis" [colors]="bar.colors"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Column Chart </h5>
+        </div>
+        <div class="card-body">
+          <div id="column-chart">
+            <apx-chart [series]="column.series" [chart]="column.chart" [dataLabels]="column.dataLabels"
+              [plotOptions]="column.plotOptions" [yaxis]="column.yaxis" [legend]="column.legend" [fill]="column.fill"
+              [stroke]="column.stroke" [tooltip]="column.tooltip" [xaxis]="column.xaxis" [colors]="column.colors">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 box-col-12 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>
+            3d Bubble Chart </h5>
+        </div>
+        <div class="card-body">
+          <div id="chart-bubble">
+            <apx-chart [series]="bubble1.series" [chart]="bubble1.chart" [xaxis]="bubble1.xaxis" [fill]="bubble1.fill"
+              [dataLabels]="bubble1.dataLabels" [title]="bubble1.title" [yaxis]="bubble1.yaxis"
+              [tooltip]="bubble1.tooltip" [theme]="bubble1.theme" [colors]="bubble1.colors"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 box-col-12 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Candlestick Chart </h5>
+        </div>
+        <div class="card-body">
+          <div id="candlestick">
+            <apx-chart [series]="candelStick.series" [chart]="candelStick.chart" [xaxis]="candelStick.xaxis"
+              [yaxis]="candelStick.yaxis" [title]="candelStick.title" [plotOptions]="candelStick.plotOptions">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Stepline Chart </h5>
+        </div>
+        <div class="card-body">
+          <div id="stepline">
+            <apx-chart [series]="stepLine.series" [chart]="stepLine.chart" [markers]="stepLine.markers"
+              [stroke]="stepLine.stroke" [dataLabels]="stepLine.dataLabels" [title]="stepLine.title"
+              [colors]="stepLine.colors"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Column Chart</h5>
+        </div>
+        <div class="card-body">
+          <div id="annotationchart">
+            <apx-chart [series]="lineWithAnnotation.series" [chart]="lineWithAnnotation.chart"
+              [xaxis]="lineWithAnnotation.xaxis" [dataLabels]="lineWithAnnotation.dataLabels"
+              [grid]="lineWithAnnotation.grid" [stroke]="lineWithAnnotation.stroke" [title]="lineWithAnnotation.title"
+              [labels]="lineWithAnnotation.labels" [annotations]="lineWithAnnotation.annotations"
+              [colors]="lineWithAnnotation.colors"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Pie Chart </h5>
+        </div>
+        <div class="card-body apex-chart">
+          <div id="piechart">
+            <apx-chart [series]="pie.pieseries" [chart]="pie.chart" [labels]="pie.labels" [responsive]="pie.responsive"
+              [colors]="pie.colors">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Donut Chart</h5>
+        </div>
+        <div class="card-body apex-chart">
+          <div id="donutchart">
+            <apx-chart [series]="donut.pieseries" [chart]="donut.chart" [labels]="donut.labels"
+              [responsive]="donut.responsive" [colors]="donut.colors">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Mixed Chart</h5>
+        </div>
+        <div class="card-body">
+          <div id="mixedchart">
+            <apx-chart [series]="mixed.series" [chart]="mixed.chart" [yaxis]="mixed.yaxis" [xaxis]="mixed.xaxis"
+              [labels]="mixed.labels" [stroke]="mixed.stroke" [plotOptions]="mixed.plotOptions"
+              [markers]="mixed.markers" [fill]="mixed.fill" [tooltip]="mixed.tooltip" [colors]="mixed.colors">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Radar Chart </h5>
+        </div>
+        <div class="card-body">
+          <div id="radarchart">
+            <apx-chart [series]="radar.series" [chart]="radar.chart" [xaxis]="radar.xaxis" [stroke]="radar.stroke"
+              [colors]="radar.colors" [dataLabels]="radar.dataLabels" [tooltip]="radar.tooltip" [responsive]="radar.responsive" 
+              [plotOptions]="radar.plotOptions" [markers]="radar.markers" [yaxis]="radar.yaxis" [fill]="radar.fill"
+              [title]="radar.title"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-xl-6 xl-100">
+      <div class="card">
+        <div class="card-header">
+          <h5>Radial Bar Chart</h5>
+        </div>
+        <div class="card-body">
+          <div id="circlechart">
+            <apx-chart [series]="radial.pieseries" [chart]="radial.chart" [plotOptions]="radial.plotOptions"
+              [labels]="radial.labels" [colors]="radial.colors"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

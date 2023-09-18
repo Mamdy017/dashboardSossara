@@ -1,0 +1,52 @@
+{
+  "name": "ngx-image-cropper",
+  "version": "6.3.4",
+  "description": "An image cropper for Angular",
+  "author": "Martijn Willekens",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mawi137/ngx-image-cropper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Mawi137/ngx-image-cropper/issues"
+  },
+  "homepage": "https://github.com/Mawi137/ngx-image-cropper",
+  "keywords": [
+    "angular",
+    "angular 13",
+    "angular 14",
+    "angular 15",
+    "ionic",
+    "ionic-angular",
+    "cropper",
+    "image cropper"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/common": ">=13.0.0",
+    "@angular/core": ">=13.0.0"
+  },
+  "module": "fesm2015/ngx-image-cropper.mjs",
+  "es2020": "fesm2020/ngx-image-cropper.mjs",
+  "esm2020": "esm2020/ngx-image-cropper.mjs",
+  "fesm2020": "fesm2020/ngx-image-cropper.mjs",
+  "fesm2015": "fesm2015/ngx-image-cropper.mjs",
+  "typings": "ngx-image-cropper.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./ngx-image-cropper.d.ts",
+      "esm2020": "./esm2020/ngx-image-cropper.mjs",
+      "es2020": "./fesm2020/ngx-image-cropper.mjs",
+      "es2015": "./fesm2015/ngx-image-cropper.mjs",
+      "node": "./fesm2015/ngx-image-cropper.mjs",
+      "default": "./fesm2020/ngx-image-cropper.mjs"
+    }
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

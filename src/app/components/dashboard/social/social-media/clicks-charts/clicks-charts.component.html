@@ -1,0 +1,19 @@
+<div class="card click-widgets widget-hover">
+   <div class="card-body">
+     <div class="dropdown icon-dropdown text-end">
+       <button class="btn dropdown-toggle" type="button" (click)="toggle()"><i class="icon-more-alt"></i></button>
+       <div class="dropdown-menu dropdown-menu-end" [class.show]="show"><a class="dropdown-item" href="#">Today</a><a class="dropdown-item" href="#">Tomorrow</a><a class="dropdown-item" href="#">Yesterday</a></div>
+     </div>
+     <div class="d-flex justify-content-around">
+       <div class="click-chart">
+         <div id="photo-click"> 
+            <apx-chart [series]="data.series" [chart]="data.chart" [dataLabels]="data.dataLabels" [stroke]="data.stroke" [grid]="data.grid" [tooltip]="data.tooltip" [colors]="data.colors" [annotations]="data.annotations" [fill]="data.fill" [xaxis]="data.xaxis" [yaxis]="data.yaxis" [responsive]="data.responsive" ></apx-chart>
+         </div>
+       </div>
+       <div>
+         <h4 class="mb-0">%{{data.clickParsonage}}</h4>
+         <span class="f-light d-block my-1">{{data.clicks}}</span><span class="font-{{data.colorClass}}">{{data.growth}}</span>
+       </div>
+     </div>
+   </div>
+ </div>

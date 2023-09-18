@@ -1,0 +1,18 @@
+<div class="card">
+   <div class="card-header card-no-border">
+     <div class="header-top gap-1">
+       <h5>Follower Gender</h5>
+       <div class="dropdown icon-dropdown">
+         <button class="btn dropdown-toggle" id="followerdropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="icon-more-alt"></i></button>
+         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="followerdropdown"><a class="dropdown-item" href="#">Weekly</a><a class="dropdown-item" href="#">Monthly</a><a class="dropdown-item" href="#">Yearly</a></div>
+       </div>
+     </div>
+   </div>
+   <div class="card-body pt-0"> 
+     <div class="follower-chart"> 
+       <div id="followerchart">
+        <apx-chart [series]="followerGender.series" [chart]="followerGender.chart" [plotOptions]="followerGender.plotOptions" [colors]="followerGender.colors" [labels]="followerGender.labels" [stroke]="followerGender.stroke" [legend]="followerGender.legend" [responsive]="followerGender.responsive"></apx-chart>
+       </div>
+     </div>
+   </div>
+ </div>

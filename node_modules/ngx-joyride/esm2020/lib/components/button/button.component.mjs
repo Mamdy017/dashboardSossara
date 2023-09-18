@@ -1,0 +1,22 @@
+import { Component, Input, EventEmitter, Output } from "@angular/core";
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/common";
+export class JoyrideButtonComponent {
+    constructor() {
+        this.clicked = new EventEmitter();
+    }
+    onClick() {
+        this.clicked.emit();
+    }
+}
+JoyrideButtonComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: JoyrideButtonComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+JoyrideButtonComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.1", type: JoyrideButtonComponent, selector: "joyride-button", inputs: { color: "color" }, outputs: { clicked: "clicked" }, ngImport: i0, template: "<button (mouseleave)=\"hover=false\" (mouseover)=\"hover=true\"\n    [ngStyle]=\"{'background-color': hover ? '#fff' : color, \n                'color': hover ? color : '#fff',\n                'border-color' : hover ? color : 'transparent'}\"\n    class=\"joyride-button\" (click)=\"onClick()\">\n    <ng-content></ng-content>\n</button>", styles: [".joyride-button{text-transform:uppercase;border:2px solid transparent;outline:none;padding:6px 12px;font-size:12px;font-weight:700;color:#fff;background-color:#3b5560;cursor:pointer}.joyride-button:hover{color:#3b5560;border:2px solid #3b5560;background-color:#fff}\n"], directives: [{ type: i1.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: JoyrideButtonComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'joyride-button', template: "<button (mouseleave)=\"hover=false\" (mouseover)=\"hover=true\"\n    [ngStyle]=\"{'background-color': hover ? '#fff' : color, \n                'color': hover ? color : '#fff',\n                'border-color' : hover ? color : 'transparent'}\"\n    class=\"joyride-button\" (click)=\"onClick()\">\n    <ng-content></ng-content>\n</button>", styles: [".joyride-button{text-transform:uppercase;border:2px solid transparent;outline:none;padding:6px 12px;font-size:12px;font-weight:700;color:#fff;background-color:#3b5560;cursor:pointer}.joyride-button:hover{color:#3b5560;border:2px solid #3b5560;background-color:#fff}\n"] }]
+        }], propDecorators: { color: [{
+                type: Input
+            }], clicked: [{
+                type: Output
+            }] } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnV0dG9uLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL25neC1qb3lyaWRlL3NyYy9saWIvY29tcG9uZW50cy9idXR0b24vYnV0dG9uLmNvbXBvbmVudC50cyIsIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL25neC1qb3lyaWRlL3NyYy9saWIvY29tcG9uZW50cy9idXR0b24vYnV0dG9uLmNvbXBvbmVudC5odG1sIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsS0FBSyxFQUFFLFlBQVksRUFBRSxNQUFNLEVBQUUsTUFBTSxlQUFlLENBQUM7OztBQU92RSxNQUFNLE9BQU8sc0JBQXNCO0lBTG5DO1FBWUksWUFBTyxHQUFzQixJQUFJLFlBQVksRUFBRSxDQUFDO0tBS25EO0lBSEcsT0FBTztRQUNILElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxFQUFFLENBQUM7SUFDeEIsQ0FBQzs7bUhBWFEsc0JBQXNCO3VHQUF0QixzQkFBc0IsbUhDUG5DLG9WQU1TOzJGRENJLHNCQUFzQjtrQkFMbEMsU0FBUzsrQkFDSSxnQkFBZ0I7OEJBUTFCLEtBQUs7c0JBREosS0FBSztnQkFJTixPQUFPO3NCQUROLE1BQU0iLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnQsIElucHV0LCBFdmVudEVtaXR0ZXIsIE91dHB1dCB9IGZyb20gXCJAYW5ndWxhci9jb3JlXCI7XG5cbkBDb21wb25lbnQoe1xuICAgIHNlbGVjdG9yOiAnam95cmlkZS1idXR0b24nLFxuICAgIHRlbXBsYXRlVXJsOiAnLi9idXR0b24uY29tcG9uZW50Lmh0bWwnLFxuICAgIHN0eWxlVXJsczogWycuL2J1dHRvbi5jb21wb25lbnQuc2NzcyddXG59KVxuZXhwb3J0IGNsYXNzIEpveXJpZGVCdXR0b25Db21wb25lbnQge1xuICAgIGhvdmVyOiBib29sZWFuO1xuICAgIFxuICAgIEBJbnB1dCgpIFxuICAgIGNvbG9yOiBzdHJpbmc7XG4gICAgXG4gICAgQE91dHB1dCgpXG4gICAgY2xpY2tlZDogRXZlbnRFbWl0dGVyPGFueT4gPSBuZXcgRXZlbnRFbWl0dGVyKCk7XG5cbiAgICBvbkNsaWNrKCkge1xuICAgICAgICB0aGlzLmNsaWNrZWQuZW1pdCgpO1xuICAgIH1cbn0iLCI8YnV0dG9uIChtb3VzZWxlYXZlKT1cImhvdmVyPWZhbHNlXCIgKG1vdXNlb3Zlcik9XCJob3Zlcj10cnVlXCJcbiAgICBbbmdTdHlsZV09XCJ7J2JhY2tncm91bmQtY29sb3InOiBob3ZlciA/ICcjZmZmJyA6IGNvbG9yLCBcbiAgICAgICAgICAgICAgICAnY29sb3InOiBob3ZlciA/IGNvbG9yIDogJyNmZmYnLFxuICAgICAgICAgICAgICAgICdib3JkZXItY29sb3InIDogaG92ZXIgPyBjb2xvciA6ICd0cmFuc3BhcmVudCd9XCJcbiAgICBjbGFzcz1cImpveXJpZGUtYnV0dG9uXCIgKGNsaWNrKT1cIm9uQ2xpY2soKVwiPlxuICAgIDxuZy1jb250ZW50PjwvbmctY29udGVudD5cbjwvYnV0dG9uPiJdfQ==

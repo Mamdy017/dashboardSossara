@@ -1,0 +1,147 @@
+<app-breadcrumb [title]="'Form Wizard Two'" [items]="['Forms', 'Form Layout']" [active_item]="'Form Wizard Two'"></app-breadcrumb>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>Form Wizard And Validation</h5><span>Validation Step Form Wizard</span>
+        </div>
+        <div class="card-body">
+          <form action="#">
+            <aw-wizard navBarLayout='large-filled-symbols'>
+              <aw-wizard-step [navigationSymbol]="{ symbol: '1' }">
+                <form [formGroup]="firstFormGroup">
+                  <ng-template awWizardStepTitle>
+                    <p>Step 1</p>
+                  </ng-template>
+                  <div class="setup-content" id="step-1">
+                    <div class="col-xs-12">
+                      <div class="col-md-12">
+                        <div class="mb-3">
+                          <label for="name">First Name</label>
+                          <input class="form-control" id="name" type="text" placeholder="Johan" required="required"
+                            formControlName="firstName" onlyAlphabets>
+                          <ng-container class="invalid"
+                            *ngIf="firstFormGroup.get('firstName').hasError('required') && firstFormGroup.get('firstName').touched">
+                            First Name is required</ng-container>
+                        </div>
+                        <div class="mb-3">
+                          <label for="lname">Last Name</label>
+                          <input class="form-control" id="lname" type="text" placeholder="Deo"
+                            formControlName="lastName" onlyAlphabets>
+                          <ng-container class="invalid"
+                            *ngIf="firstFormGroup.get('lastName').hasError('required') && firstFormGroup.get('lastName').touched">
+                            Last Name is required</ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary pull-right" type="submit" awNextStep
+                    [disabled]="!firstFormGroup.valid">Next</button>
+                </form>
+              </aw-wizard-step>
+              <aw-wizard-step [navigationSymbol]="{ symbol: '2' }">
+                <form [formGroup]="secondFormGroup">
+                  <ng-template awWizardStepTitle>
+                    <p>Step 2</p>
+                  </ng-template>
+                  <div class="setup-content" id="step-2">
+                    <div class="col-xs-12">
+                      <div class="col-md-12">
+                        <div class="mb-3 m-t-15">
+                          <label for="exampleFormControlInput1">Email address</label>
+                          <input class="form-control" id="exampleFormControlInput1" type="email"
+                            placeholder="name@example.com" formControlName="email">
+                          <ng-container class="invalid"
+                            *ngIf="secondFormGroup.get('email').hasError('required') && secondFormGroup.get('email').touched">
+                            Email is required</ng-container>
+                          <ng-container class="invalid"
+                            *ngIf="secondFormGroup.get('email').hasError('email') && secondFormGroup.get('email').touched">
+                            Email is not Proper</ng-container>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1">Password</label>
+                          <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password"
+                            formControlName="password">
+                          <ng-container class="invalid"
+                            *ngIf="secondFormGroup.get('password').hasError('required') && secondFormGroup.get('password').touched">
+                            Password is required</ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary pull-right" type="submit" awNextStep
+                    [disabled]="!secondFormGroup.valid">Next</button>
+                  <button class="btn btn-secondary pull-right me-1" type="button" awPreviousStep>Previous</button>
+                </form>
+              </aw-wizard-step>
+              <aw-wizard-step [navigationSymbol]="{ symbol: '3' }">
+                <form [formGroup]="thirdFormGroup">
+                  <ng-template awWizardStepTitle>
+                    <p>Step 3</p>
+                  </ng-template>
+                  <div class="setup-content" id="step-3">
+                    <div class="col-xs-12">
+                      <div class="col-md-12">
+                        <div class="mb-3 custom-datepicker-dropdown custom-datepicker">
+                          <label for="exampleFormControlInput1">Birthday:</label>
+                          <input class="form-control digits" type="text" formControlName="birthdate" ngbDatepicker
+                            #dob="ngbDatepicker" [maxDate]="maxDate" disableKeyPress (click)="dob.toggle()">
+                          <ng-container class="invalid"
+                            *ngIf="thirdFormGroup.get('birthdate').hasError('required') && thirdFormGroup.get('birthdate').touched">
+                            Birth Date is required</ng-container>
+                        </div>
+                        <div class="mb-3">
+                          <label class="control-label">Have Passport</label>
+                          <input class="form-control digits" placeholder="Yes/No" type="text"
+                            formControlName="hasPassport">
+                          <ng-container class="invalid"
+                            *ngIf="thirdFormGroup.get('hasPassport').hasError('required') && thirdFormGroup.get('hasPassport').touched">
+                            Passport field is required</ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="btn btn-primary pull-right" type="submit" awNextStep>Next</button>
+                  <button class="btn btn-secondary pull-right me-1" type="button" awPreviousStep>Previous</button>
+                </form>
+              </aw-wizard-step>
+              <aw-wizard-step [navigationSymbol]="{ symbol: '4' }">
+                <form [formGroup]="fourthFormGroup">
+                  <ng-template awWizardStepTitle>
+                    <p>Step 4</p>
+                  </ng-template>
+                  <div class="setup-content" id="step-4">
+                    <div class="col-xs-12">
+                      <div class="col-md-12">
+                        <div class="mb-3">
+                          <label class="control-label">State</label>
+                          <input class="form-control mt-1" type="text" placeholder="State" required="required"
+                            formControlName="state">
+                          <ng-container class="invalid"
+                            *ngIf="fourthFormGroup.get('state').hasError('required') && fourthFormGroup.get('state').touched">
+                            State is required</ng-container>
+                        </div>
+                        <div class="mb-3">
+                          <label class="control-label">City</label>
+                          <input class="form-control mt-1" type="text" placeholder="City" required="required"
+                            formControlName="city">
+                          <ng-container class="invalid"
+                            *ngIf="fourthFormGroup.get('city').hasError('required') && fourthFormGroup.get('city').touched">
+                            City is required</ng-container>
+                        </div>
+                        <button class="btn btn-success pull-right" type="button" (click)="finish()"
+                          [disabled]="!fourthFormGroup.valid">Finish</button>
+                        <button class="btn btn-secondary pull-right me-1" type="button" awPreviousStep>Previous</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </aw-wizard-step>
+            </aw-wizard>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

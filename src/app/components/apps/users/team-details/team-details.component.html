@@ -1,0 +1,70 @@
+<app-breadcrumb
+  [title]="'All Users'"
+  [items]="['Apps', 'User']"
+  [active_item]="'All Users'"
+></app-breadcrumb>
+
+<div class="container-fluid py-4">
+  <div class="row">
+    <div
+      *ngFor="let agence of tableItem$ | async; index as i"
+      class="col-xl-4 col-sm-6 col-xxl-3 col-ed-4 box-col-4"
+    >
+      <div
+      class="card social-profile">
+        <div class="card-body">
+          <div class="social-img-wrap">
+            <div class="social-img">
+              <img src="{{ generateImageUrl(agence?.photo) }}"  (error)="handleAuthorImageError($event)"
+              alt="" alt="profile" />
+            </div>
+            <div class="edit-icon">
+              <svg>
+                <use href="assets/svg/icon-sprite.svg#profile-check"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="social-details">
+            <h5 class="mb-1">
+              <a>{{ agence?.nom }}</a>
+            </h5>
+            <span class="f-light">Téléphone: {{ agence?.telephone }}</span>
+            <ul class="card-social">
+              <li>
+                <a href="mailto:{{ agence?.email }}" target="_blank">{{ agence?.email }}
+           
+                  </a>
+              </li>  
+            </ul>
+            <ul class="social-follow">
+              <li>
+                <h5 class="mb-0">{{ agence?.agent.length }}</h5>
+                <span class="f-light">agent </span>
+              </li>
+              <li>
+                <h5 class="mb-0">{{  agence?.totalLouer }}</h5>
+                <span class="f-light">Location</span>
+              </li>
+              <li>
+                <h5 class="mb-0">{{ agence?.totalVente }}</h5>
+                <span class="f-light">Ventes</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-between mt-3 mb-4">
+      <select class="form-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+        <option [ngValue]="6">Afficher 6 éléments</option>
+        <option [ngValue]="8">Afficher 8 éléments</option>
+        <option [ngValue]="12">Afficher 12 éléments</option>
+
+        <option [ngValue]="service.total$ | async">Tout afficher</option> 
+      </select>
+      <ngb-pagination class="ms-3" [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"> </ngb-pagination>
+    </div>
+
+
+  </div>
+</div>
